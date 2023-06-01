@@ -18,10 +18,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app'; // OKAY
+import { environment } from '../environments/environment'; // OKAY
+import { provideAuth,getAuth } from '@angular/fire/auth'; // ?
+import { provideDatabase,getDatabase } from '@angular/fire/database'; // ?
+import { provideFirestore,getFirestore } from '@angular/fire/firestore'; // OKAY
+
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
