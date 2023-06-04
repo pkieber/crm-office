@@ -22,6 +22,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app'; // OKAY
 import { environment } from '../environments/environment'; // OKAY
@@ -55,6 +56,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     FormsModule,
     MatProgressBarModule,
     MatCardModule,
+    MatMenuModule,
 
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
