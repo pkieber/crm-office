@@ -18,7 +18,7 @@ export class UserComponent {
   user$!: Observable<any>;
   firestore: Firestore = inject(Firestore);
 
-  allUsers!: Array<any>;
+  allUsers!: Array<any>; // Empty array to save changes.
 
   constructor(public dialog: MatDialog) {
     const userCollection = collection(this.firestore, 'users');

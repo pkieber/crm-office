@@ -20,13 +20,21 @@ export class DialogAddUserComponent {
 
   constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) {}
 
-  saveUser() {
+  async saveUser() {
     this.user.birthDate = this.birthDate.getTime(); // OKAY
     console.log('Current user: ', this.user);
     this.loading = true;
     const userCollection = collection(this.firestore, 'users'); // In Firestore wird Sammlung "users" mit JSON-Input erstellt.
-    let result = addDoc(userCollection, this.user.toJSON());
-    this.dialogRef.close();
+    let result = await addDoc(userCollection, this.user.toJSON());
+
+    // Add ID to user.name
+    const newNameRef = doc(userCollection, result['id']);
+    this.user.customIdName = result['id'];
+    console.log('Custom ID: ', this.user.customIdName);
+    updateDoc(newNameRef, this.user.toJSON());
+
+    // Stop loader and close dialog
     this.loading = false;
+    this.dialogRef.close();
   }
 }
