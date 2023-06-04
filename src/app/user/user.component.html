@@ -5,20 +5,10 @@
       <th>E-Mail</th>
       <th>City</th>
     </tr>
-    <tr>
-      <td>xy</td>
+    <tr *ngFor="let user of allUsers">
+      <td> {{ user.firstName }} {{ user.lastName }}</td>
       <td>sy</td>
-      <td>sy</td>
-    </tr>
-    <tr>
-      <td>xy</td>
-      <td>sy</td>
-      <td>sy</td>
-    </tr>
-    <tr>
-      <td>xy</td>
-      <td>sy</td>
-      <td>sy</td>
+      <td> {{ user.city }} </td>
     </tr>
   </table>
 
