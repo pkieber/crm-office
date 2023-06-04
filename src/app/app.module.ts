@@ -29,6 +29,8 @@ import { environment } from '../environments/environment'; // OKAY
 import { provideAuth,getAuth } from '@angular/fire/auth'; // ?
 import { provideDatabase,getDatabase } from '@angular/fire/database'; // ?
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-address.component';
+import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     DashboardComponent,
     UserComponent,
     DialogAddUserComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    DialogEditAddressComponent,
+    DialogEditUserComponent
   ],
   imports: [
     BrowserModule,
