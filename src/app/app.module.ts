@@ -1,4 +1,3 @@
-import { MatCardModule } from '@angular/material/card';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,6 +9,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
+import { UserDetailComponent } from './user-detail/user-detail.component'; // OKAY
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
@@ -20,12 +21,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatCardModule } from '@angular/material/card';
 
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app'; // OKAY
 import { environment } from '../environments/environment'; // OKAY
 import { provideAuth,getAuth } from '@angular/fire/auth'; // ?
 import { provideDatabase,getDatabase } from '@angular/fire/database'; // ?
-import { provideFirestore,getFirestore } from '@angular/fire/firestore'; // OKAY
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore'; // OKAY
     AppComponent,
     DashboardComponent,
     UserComponent,
-    DialogAddUserComponent
+    DialogAddUserComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
