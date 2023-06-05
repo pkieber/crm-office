@@ -47,13 +47,17 @@ export class UserDetailComponent {
     });
   }
 
+  // Nutzer wird an neue Komponente übergeben --> Kopie vom Nutzer-Objekt erstellen, wenn es editierbar sein soll!
+  // D.h. JSON wird als Parameter dem neuen Nutzer (new User) als Kopie übergeben. Ansonsten würden Änderungen auch ohne Speichern übernommen.
   editUserDetail() {
     const dialog = this.dialog.open(DialogEditUserComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User (this.user.toJSON());
+    dialog.componentInstance.userId = this.userId;
   }
 
   editAddressDetail() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User (this.user.toJSON());
+    dialog.componentInstance.userId = this.userId;
   }
 }

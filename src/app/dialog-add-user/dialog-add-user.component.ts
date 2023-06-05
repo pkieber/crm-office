@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { User } from 'src/models/user.class';
-import { Firestore, collection, collectionData, doc, addDoc, updateDoc} from '@angular/fire/firestore';
+import { Firestore, collection, doc, addDoc, updateDoc} from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 
@@ -28,10 +28,10 @@ export class DialogAddUserComponent {
     let result = await addDoc(userCollection, this.user.toJSON());
 
     // Add ID to user.name
-    const newNameRef = doc(userCollection, result['id']);
+    const docRef = doc(userCollection, result['id']);
     this.user.customIdName = result['id'];
     console.log('Custom ID: ', this.user.customIdName);
-    updateDoc(newNameRef, this.user.toJSON());
+    updateDoc(docRef, this.user.toJSON());
 
     // Stop loader and close dialog
     this.loading = false;
