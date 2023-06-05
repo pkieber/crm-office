@@ -1,11 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/models/user.class';
-//
-import { Firestore, collection, collectionData, doc, docData, addDoc, updateDoc} from '@angular/fire/firestore';
-
+import { Firestore, collection, doc, docData } from '@angular/fire/firestore';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
 
