@@ -4,7 +4,6 @@ import { Firestore, collection, doc, addDoc, updateDoc} from '@angular/fire/fire
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 
-
 @Component({
   selector: 'app-dialog-add-user',
   templateUrl: './dialog-add-user.component.html',
