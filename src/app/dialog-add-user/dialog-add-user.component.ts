@@ -23,7 +23,7 @@ export class DialogAddUserComponent {
     this.user.birthDate = this.birthDate.getTime(); // OKAY
     console.log('Current user: ', this.user);
     this.loading = true;
-    const userCollection = collection(this.firestore, 'users'); // In Firestore wird Sammlung "users" mit JSON-Input erstellt.
+    const userCollection = collection(this.firestore, 'users');
     let result = await addDoc(userCollection, this.user.toJSON());
 
     // Add ID to user.name

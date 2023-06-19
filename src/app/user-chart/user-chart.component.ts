@@ -23,7 +23,11 @@ export class UserChartComponent implements OnInit {
 
   allUsers!: Array<any>;
   numberOfUsers!: number;
-
+  numberOfAdmin!: number;
+  numberOfFinance!: number;
+  numberOfMarketing!: number;
+  numberOfSales!: number;
+  numberOfProduction!: number;
 
   /**
    * Constructs a new UserComponent instance.
@@ -41,6 +45,11 @@ export class UserChartComponent implements OnInit {
     this.user$.subscribe(( changes: any ) => {
       this.allUsers = changes;
       this.numberOfUsers = this.allUsers.length;
+      this.numberOfAdmin = this.allUsers.filter(user => user.division === 'Admin').length;
+      this.numberOfFinance = this.allUsers.filter(user => user.division === 'Finance').length;
+      this.numberOfMarketing= this.allUsers.filter(user => user.division === 'Marketing').length;
+      this.numberOfSales = this.allUsers.filter(user => user.division === 'Sales').length;
+      this.numberOfProduction = this.allUsers.filter(user => user.division === 'Production').length;
       console.log('Received changes from DB', changes);
     });
   }
