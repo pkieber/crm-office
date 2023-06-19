@@ -2,12 +2,53 @@ import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
+import { inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { User } from 'src/models/user.class';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+
+
 @Component({
   selector: 'app-user-chart',
   templateUrl: './user-chart.component.html',
   styleUrls: ['./user-chart.component.scss']
 })
 export class UserChartComponent implements OnInit {
+
+  userId: string = '';
+  user: User = new User();
+  firestore: Firestore = inject(Firestore);
+  user$!: Observable<any>;
+
+  allUsers!: Array<any>;
+  numberOfUsers!: number;
+
+
+  /**
+   * Constructs a new UserComponent instance.
+   * @param {MatDialog} dialog - The MatDialog service for opening dialogs.
+   */
+  constructor( public dialog: MatDialog) {
+    const userCollection = collection(this.firestore, 'users');
+    this.user$ = collectionData(userCollection);
+
+
+    /**
+    * Observable that emits changes to the user collection.
+    * The total count of users (used for chart analysis).
+    */
+    this.user$.subscribe(( changes: any ) => {
+      this.allUsers = changes;
+      this.numberOfUsers = this.allUsers.length;
+      console.log('Received changes from DB', changes);
+    });
+  }
+
+
+  /**
+   * Shows chart info.
+   */
   ngOnInit(): void {
     let myChart = new Chart("myChart", {
       type: 'bar',

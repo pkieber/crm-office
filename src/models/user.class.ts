@@ -9,6 +9,7 @@ export class User {
   division: string;
   title: string;
   customIdName!: string;
+  numberOfUser!: number;
 
   constructor(obj?: any) {
     this.firstName = obj ? obj.firstName : '';
