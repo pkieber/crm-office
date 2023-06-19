@@ -1,9 +1,11 @@
 <div id="divChart">
-  <h2>Total Staff Count: {{ numberOfUsers }}</h2>
-  <div>Admin - Staff: {{ numberOfAdmin }}</div>
-  <div>Finance - Staff: {{ numberOfFinance }}</div>
-  <div>Marketing - Staff: {{ numberOfMarketing }}</div>
-  <div>Sales - Staff: {{ numberOfSales }}</div>
-  <div>Production - Staff: {{ numberOfProduction }}</div>
+  <mat-card class="p-16 mb-10">
+    <h2>Total Staff Count: {{ numberOfUsers }}</h2>
+    <div>Admin - Staff: {{ numberOfAdmin }}</div>
+    <div>Finance - Staff: {{ numberOfFinance }}</div>
+    <div>Marketing - Staff: {{ numberOfMarketing }}</div>
+    <div>Sales - Staff: {{ numberOfSales }}</div>
+    <div>Production - Staff: {{ numberOfProduction }}</div>
+  </mat-card>
   <canvas class="chart" id="myChart"></canvas>
 </div>

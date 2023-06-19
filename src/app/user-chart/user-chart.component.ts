@@ -20,7 +20,7 @@ export class UserChartComponent implements OnInit {
   user: User = new User();
   firestore: Firestore = inject(Firestore);
   user$!: Observable<any>;
-
+  // Variables needed for chart info.
   allUsers!: Array<any>;
   numberOfUsers!: number;
   numberOfAdmin!: number;
@@ -28,6 +28,8 @@ export class UserChartComponent implements OnInit {
   numberOfMarketing!: number;
   numberOfSales!: number;
   numberOfProduction!: number;
+  myChart: Chart | undefined;
+
 
   /**
    * Constructs a new UserComponent instance.
@@ -36,59 +38,81 @@ export class UserChartComponent implements OnInit {
   constructor( public dialog: MatDialog) {
     const userCollection = collection(this.firestore, 'users');
     this.user$ = collectionData(userCollection);
-
-
-    /**
-    * Observable that emits changes to the user collection.
-    * The total count of users (used for chart analysis).
-    */
-    this.user$.subscribe(( changes: any ) => {
-      this.allUsers = changes;
-      this.numberOfUsers = this.allUsers.length;
-      this.numberOfAdmin = this.allUsers.filter(user => user.division === 'Admin').length;
-      this.numberOfFinance = this.allUsers.filter(user => user.division === 'Finance').length;
-      this.numberOfMarketing= this.allUsers.filter(user => user.division === 'Marketing').length;
-      this.numberOfSales = this.allUsers.filter(user => user.division === 'Sales').length;
-      this.numberOfProduction = this.allUsers.filter(user => user.division === 'Production').length;
-      console.log('Received changes from DB', changes);
-    });
   }
 
 
   /**
-   * Shows chart info.
+   * Initializes the user chart component.
    */
+
   ngOnInit(): void {
-    let myChart = new Chart("myChart", {
+    this.userId = '';
+    this.user = new User();
+    this.user$.subscribe((changes: any) => {
+      this.allUsers = changes;
+      this.numberOfUsers = this.allUsers.length;
+      this.numberOfAdmin = this.allUsers.filter(user => user.division === 'Admin').length;
+      this.numberOfFinance = this.allUsers.filter(user => user.division === 'Finance').length;
+      this.numberOfMarketing = this.allUsers.filter(user => user.division === 'Marketing').length;
+      this.numberOfSales = this.allUsers.filter(user => user.division === 'Sales').length;
+      this.numberOfProduction = this.allUsers.filter(user => user.division === 'Production').length;
+
+      this.createChart();
+    });
+  }
+
+
+  ngAfterViewInit(): void {
+    this.createChart();
+  }
+
+
+  createChart() {
+    if (this.myChart) {
+      this.myChart.destroy(); // Destroy the existing chart instance if it exists
+    }
+
+    this.myChart = new Chart('myChart', {
       type: 'bar',
       data: {
-          labels: ['Admin', 'Finance', 'Marketing', 'Sales', 'Production'],
-          datasets: [{
-              label: 'Staff Count',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-              ],
-              borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-              ],
-              borderWidth: 1
-          }]
+        labels: ['Admin', 'Finance', 'Marketing', 'Sales', 'Production'],
+        datasets: [{
+          label: 'Staff Count',
+          data: [
+            this.numberOfAdmin,
+            this.numberOfFinance,
+            this.numberOfMarketing,
+            this.numberOfSales,
+            this.numberOfProduction
+          ],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+          ],
+          borderWidth: 1
+        }]
       },
       options: {
-          scales: {
-              y: {
-                  beginAtZero: true
-              }
+        scales: {
+          y: {
+            beginAtZero: true
           }
+        },
+        plugins: {
+          legend: {
+            display: false // Set display to false to hide the legend label
+          }
+        }
       }
     });
   }
