@@ -60,6 +60,10 @@ export class UserChartComponent implements OnInit {
   }
 
 
+  /**
+   * It is executed after the view has been fully initialized to ensure that
+   * ... the chart creation process will occur at the appropriate time.
+   */
   ngAfterViewInit(): void {
     this.createChart();
   }

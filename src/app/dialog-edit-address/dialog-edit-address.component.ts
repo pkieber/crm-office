@@ -1,5 +1,5 @@
 import { User } from 'src/models/user.class';
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Firestore, collection, doc, updateDoc} from '@angular/fire/firestore';
 
@@ -12,10 +12,13 @@ export class DialogEditAddressComponent {
   user!: User;
   userId!: string;
   loading = false;
-  firestore: Firestore = inject(Firestore);
 
-  constructor(public dialogRef: MatDialogRef<DialogEditAddressComponent>) {}
+  constructor(private firestore: Firestore, public dialogRef: MatDialogRef<DialogEditAddressComponent>) {}
 
+
+  /**
+   * Updates the user's address in the database.
+   */
   updateUserAddress() {
     this.loading = true;
 

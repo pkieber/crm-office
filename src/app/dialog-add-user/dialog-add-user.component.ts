@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { User } from 'src/models/user.class';
 import { Firestore, collection, doc, addDoc, updateDoc} from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -13,15 +13,17 @@ export class DialogAddUserComponent {
   user = new User();
   birthDate!: Date;
   loading = false;
-
   user$!: Observable<any>;
-  firestore: Firestore = inject(Firestore);
 
-  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) {}
+  constructor(private firestore: Firestore, public dialogRef: MatDialogRef<DialogAddUserComponent>) {}
 
+
+  /**
+   * Saves the user to the database.
+   */
   async saveUser() {
     this.user.birthDate = this.birthDate.getTime(); // OKAY
-    console.log('Current user: ', this.user);
+    // console.log('Current user: ', this.user);
     this.loading = true;
     const userCollection = collection(this.firestore, 'users');
     let result = await addDoc(userCollection, this.user.toJSON());
@@ -29,7 +31,7 @@ export class DialogAddUserComponent {
     // Add ID to user.name
     const docRef = doc(userCollection, result['id']);
     this.user.customIdName = result['id'];
-    console.log('Custom ID: ', this.user.customIdName);
+    // console.log('Custom ID: ', this.user.customIdName);
     updateDoc(docRef, this.user.toJSON());
 
     // Stop loader and close dialog

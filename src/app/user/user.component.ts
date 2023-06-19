@@ -5,7 +5,6 @@ import { User } from 'src/models/user.class';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
-
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -14,19 +13,26 @@ import { Observable } from 'rxjs';
 export class UserComponent {
   user = new User();
   user$!: Observable<any>;
-
   allUsers!: Array<any>; // Empty array to save changes.
 
   constructor(private firestore: Firestore, public dialog: MatDialog) {
+    /**
+     * initializes the userCollection reference to the 'users' collection,
+     * ...retrieves the collection data as an observable using collectionData,
+     * ... and subscribes to the observable to handle the emitted changes by updating the allUsers property.
+     */
     const userCollection = collection(this.firestore, 'users');
     this.user$ = collectionData(userCollection);
     this.user$.subscribe(( changes: any ) => {
       this.allUsers = changes;
-      console.log('Received changes from DB', changes);
+      // console.log('Received changes from DB', changes);
     });
   }
 
 
+  /**
+   * Opens the dialog for adding a new user.
+   */
   openDialog() {
     const dialogRef = this.dialog.open(DialogAddUserComponent);
   }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from 'src/models/user.class';
 import { Firestore, collection, doc, updateDoc} from '@angular/fire/firestore';
@@ -11,11 +11,14 @@ import { Firestore, collection, doc, updateDoc} from '@angular/fire/firestore';
 export class DialogEditUserComponent {
   user!: User;
   loading = false;
-  firestore: Firestore = inject(Firestore);
   userId!: string;
 
-  constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>) {}
+  constructor(private firestore: Firestore, public dialogRef: MatDialogRef<DialogEditUserComponent>) {}
 
+
+  /**
+   * Updates the user's contact info and name in the database.
+   */
   updateUser() {
     this.loading = true;
     const userCollection = collection(this.firestore, 'users');
