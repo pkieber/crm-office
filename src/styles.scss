@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --themeColor: #3f51b5;
+  --themeColorRed: #c2185b;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -16,16 +21,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .dialog-container {
   position: relative;
-
-  mat-progress-bar {
-    /*
-    position: absolute;
-    left: -24px;
-    right: -24px;
-    top: -24px;
-    width: calc(100% + 48px);
-    */
-  }
 }
 
 .mat-mdc-form-field  {

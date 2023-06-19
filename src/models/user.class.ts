@@ -6,6 +6,8 @@ export class User {
   street!: string;
   zipCode!: number;
   city!: string;
+  division: string;
+  title: string;
   customIdName!: string;
 
   constructor(obj?: any) {
@@ -16,6 +18,8 @@ export class User {
     this.street = obj ? obj.street : '';
     this.zipCode = obj ? obj.zipCode : '';
     this.city = obj ? obj.city : '';
+    this.division = obj ? obj.division : '';
+    this.title = obj ? obj.title : '';
     this.customIdName = obj ? obj.customIdName : '';
   }
 
@@ -29,6 +33,8 @@ export class User {
       street: this.street,
       zipCode: this.zipCode,
       city: this.city,
+      division: this.division,
+      title: this.title,
       customIdName: this.customIdName,
     }
   }

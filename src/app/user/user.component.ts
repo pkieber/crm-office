@@ -1,10 +1,8 @@
-import {Component, inject} from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from 'src/models/user.class';
-//
-import { Firestore, collection, collectionData, doc, addDoc, updateDoc} from '@angular/fire/firestore';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 
@@ -16,11 +14,10 @@ import { Observable } from 'rxjs';
 export class UserComponent {
   user = new User();
   user$!: Observable<any>;
-  firestore: Firestore = inject(Firestore);
 
   allUsers!: Array<any>; // Empty array to save changes.
 
-  constructor(public dialog: MatDialog) {
+  constructor(private firestore: Firestore, public dialog: MatDialog) {
     const userCollection = collection(this.firestore, 'users');
     this.user$ = collectionData(userCollection);
     this.user$.subscribe(( changes: any ) => {
@@ -33,5 +30,4 @@ export class UserComponent {
   openDialog() {
     const dialogRef = this.dialog.open(DialogAddUserComponent);
   }
-
 }
