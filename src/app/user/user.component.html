@@ -6,9 +6,9 @@
       <th>Division</th>
     </tr>
     <tr *ngFor="let user of allUsers" [routerLink]="['/user/' + user.customIdName]">
-      <td> {{ user.firstName }} {{ user.lastName }}</td>
-      <td> {{ user.email }} </td>
-      <td> {{ user.division }}</td>
+      <td matTooltip="Show details"> {{ user.firstName }} {{ user.lastName }}</td>
+      <td matTooltip="Show details"> {{ user.email }} </td>
+      <td matTooltip="Show details"> {{ user.division }}</td>
     </tr>
   </table>
 </mat-card>
