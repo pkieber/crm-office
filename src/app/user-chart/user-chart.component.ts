@@ -15,12 +15,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./user-chart.component.scss']
 })
 export class UserChartComponent implements OnInit {
-
   userId: string = '';
   user: User = new User();
   firestore: Firestore = inject(Firestore);
   user$!: Observable<any>;
-  // Variables needed for chart info.
+
   allUsers!: Array<any>;
   numberOfUsers!: number;
   numberOfAdmin!: number;
@@ -44,7 +43,6 @@ export class UserChartComponent implements OnInit {
   /**
    * Initializes the user chart component.
    */
-
   ngOnInit(): void {
     this.userId = '';
     this.user = new User();
@@ -67,6 +65,10 @@ export class UserChartComponent implements OnInit {
   }
 
 
+  /**
+   * Creates a new chart. By destroying the existing chart instance and drawing a new chart on the same canvas,
+   * ... conflicts can be avoided.
+   */
   createChart() {
     if (this.myChart) {
       this.myChart.destroy(); // Destroy the existing chart instance if it exists
