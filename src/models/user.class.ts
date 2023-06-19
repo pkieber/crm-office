@@ -6,10 +6,9 @@ export class User {
   street!: string;
   zipCode!: number;
   city!: string;
-  division: string;
-  title: string;
+  division!: string;
+  title!: string;
   customIdName!: string;
-  numberOfUser!: number;
 
   constructor(obj?: any) {
     this.firstName = obj ? obj.firstName : '';

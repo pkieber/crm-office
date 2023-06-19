@@ -1,24 +1,21 @@
 <div class="dialog-container">
-  <!-- Show progress bar if loading. Input fields and buttons are disabled when loading. -->
+  <!-- Progress bar and loader. -->
   <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-
   <h1 mat-dialog-title>Edit User</h1>
+  <!-- Input/Selection fields. -->
   <div mat-dialog-content>
-
     <div>
       <mat-form-field class="mr-16" appearance="outline">
         <mat-label>First Name</mat-label>
         <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="First Name">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       </mat-form-field>
-
       <mat-form-field appearance="outline">
         <mat-label>Last Name</mat-label>
         <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Last Name">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       </mat-form-field>
     </div>
-
     <div>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>E-Mail</mat-label>
@@ -26,21 +23,26 @@
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       </mat-form-field>
     </div>
-
-    <div>
-      <mat-form-field class="mr-16" appearance="outline">
-        <mat-label>Division</mat-label>
-        <input [disabled]="loading" [(ngModel)]="user.division" matInput placeholder="Division">
-        <mat-icon matSuffix>work</mat-icon>
+      <mat-form-field appearance="outline" class="mr-16">
+        <mat-label>Select Division</mat-label>
+        <mat-select [disabled]="loading" [(ngModel)]="user.division" name="division">
+          <mat-option value="Admin">Admin</mat-option>
+          <mat-option value="Finance">Finance</mat-option>
+          <mat-option value="Marketing">Marketing</mat-option>
+          <mat-option value="Sales">Sales</mat-option>
+          <mat-option value="Production">Production</mat-option>
+        </mat-select>
       </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Title</mat-label>
-        <input [disabled]="loading" [(ngModel)]="user.title" matInput placeholder="Title">
-        <mat-icon matSuffix>work</mat-icon>
+      <mat-form-field appearance="outline" class="mr-16">
+        <mat-label>Select Function</mat-label>
+        <mat-select [disabled]="loading" [(ngModel)]="user.title" name="title">
+          <mat-option value="Management">Management</mat-option>
+          <mat-option value="Staff">Staff</mat-option>
+          <mat-option value="Contractor">Contractor</mat-option>
+          <mat-option value="Intern">Intern</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
-
   <div mat-dialog-actions>
       <button [disabled]="loading" mat-button (click)="dialogRef.close()">Cancel</button>
       <button [disabled]="loading" mat-button (click)="updateUser()" cdkFocusInitial>Save</button>
