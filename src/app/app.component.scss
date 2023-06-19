@@ -6,6 +6,7 @@
 mat-toolbar, mat-toolbar-row {
   min-height: 56px;
   height: 56px;
+  background: var(--themeColor)!important;
 }
 
 /* Sidenav */
@@ -39,11 +40,12 @@ mat-toolbar, mat-toolbar-row {
 
 .logo-container {
   /*background: #c2185b; */ /* Theme color */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.04); */
   padding-inline: 16px;
   min-height: 56px;
   display: flex;
   align-items: center;
+  background: black;
 }
 
 .logo {
