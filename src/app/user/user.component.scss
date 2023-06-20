@@ -56,3 +56,9 @@ mat-card {
     text-align: start;
   }
 }
+
+@media (max-width: 360px) {
+  .mobile-hide {
+    display: none;
+  }
+}

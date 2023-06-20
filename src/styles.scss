@@ -4,8 +4,20 @@
   --themeColorRed: #c2185b;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  max-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  user-select: none;
+  background-color: rgb(50, 50, 50);
+
+  @media (min-width: 1600px) {
+    margin-inline: 10%;
+  }
+}
 
 .mr-16 {
   margin-right: 16px;

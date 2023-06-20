@@ -1,5 +1,5 @@
 /* Toolbar */
-.example-spacer {
+.spacer {
   flex: 1 1 auto;
 }
 
@@ -84,7 +84,6 @@ mat-toolbar, mat-toolbar-row {
 .router-container {
   padding-left: 56px;
   padding-right: 56px;
-  padding-top: 16px;
 
   @media (max-width: 750px) {
     padding-left: 16px;
