@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Edit </h1>
+
+<img class="player-picture" [mat-dialog-close]="picture"
+  *ngFor="let picture of profilePictures" (click)="saveUserPic(picture)" src="assets/img/profile/{{ picture }}">
+
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Close</button>
+</div>

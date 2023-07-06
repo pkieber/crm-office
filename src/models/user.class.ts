@@ -9,6 +9,8 @@ export class User {
   division!: string;
   title!: string;
   customIdName!: string;
+  profilePic: string;
+
 
   constructor(obj?: any) {
     this.firstName = obj ? obj.firstName : '';
@@ -21,6 +23,7 @@ export class User {
     this.division = obj ? obj.division : '';
     this.title = obj ? obj.title : '';
     this.customIdName = obj ? obj.customIdName : '';
+    this.profilePic = obj ? obj.profilePic : '' || 'profile.png';
   }
 
 
@@ -36,6 +39,7 @@ export class User {
       division: this.division,
       title: this.title,
       customIdName: this.customIdName,
+      profilePic: this.profilePic,
     }
   }
 }

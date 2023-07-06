@@ -5,6 +5,7 @@ import { User } from 'src/models/user.class';
 import { Firestore, collection, doc, docData } from '@angular/fire/firestore';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
+import { DialogEditPicComponent } from '../dialog-edit-pic/dialog-edit-pic.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -15,9 +16,9 @@ export class UserDetailComponent {
 
   userId: string = '';
   user: User = new User(); // JSON wird in Object umgewandelt
-  firestore: Firestore = inject(Firestore);
 
-  constructor(private route: ActivatedRoute, private dialog: MatDialog) {
+
+  constructor(private firestore: Firestore, private route: ActivatedRoute, private dialog: MatDialog) {
     this.route.paramMap.subscribe( paramMap => {
       this.userId = paramMap.get('id') ?? ''; // Use nullish coalescing operator to handle null value.
       // console.log('Got Id', this.userId);
@@ -59,6 +60,16 @@ export class UserDetailComponent {
    */
   editAddressDetail() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
+    dialog.componentInstance.user = new User (this.user.toJSON());
+    dialog.componentInstance.userId = this.userId;
+  }
+
+
+  /**
+   * Opens the dialog for editing the user's profile pic.
+   */
+  editPictureDetail() {
+    const dialog = this.dialog.open(DialogEditPicComponent);
     dialog.componentInstance.user = new User (this.user.toJSON());
     dialog.componentInstance.userId = this.userId;
   }

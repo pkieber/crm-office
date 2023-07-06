@@ -1,21 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserComponent } from './user/user.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-address.component';
-import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
+
+// Components
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UserComponent } from './components/user/user.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { DialogEditAddressComponent } from './components/dialog-edit-address/dialog-edit-address.component';
+import { DialogEditUserComponent } from './components/dialog-edit-user/dialog-edit-user.component';
+import { DialogEditPicComponent } from './components/dialog-edit-pic/dialog-edit-pic.component';
+
 // Material Design (material.angular.io)
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
+import { DialogAddUserComponent } from './components/dialog-add-user/dialog-add-user.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,14 +29,16 @@ import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+
 // Firebase
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+
 // Charts
-import { UserChartComponent } from './user-chart/user-chart.component';
+import { UserChartComponent } from './components/user-chart/user-chart.component';
 import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
@@ -45,7 +50,8 @@ import { NgChartsModule } from 'ng2-charts';
     UserDetailComponent,
     DialogEditAddressComponent,
     DialogEditUserComponent,
-    UserChartComponent
+    DialogEditPicComponent,
+    UserChartComponent,
   ],
   imports: [
     BrowserModule,

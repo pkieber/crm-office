@@ -6,7 +6,7 @@
     <button mat-menu-item (click)="editUserDetail()">Edit</button>
   </mat-menu>
   <div class="user-details-box">
-    <img src="assets/img/profile.png">
+    <img matTooltip="Change picture" (click)="editPictureDetail()" src="assets/img/profile/{{ user.profilePic }}">
     <div class="user-details">
       <h2>{{ user.firstName }} {{ user.lastName }}</h2>
       <div> {{ user.division}} - {{ user.title }}</div>
