@@ -1,3 +1,8 @@
+<div class="title-container">
+  <h2>Overview Staff</h2>
+  <!--Search function. Here you have to bind child- and parent-component (see "searchTextChanged")!-->
+  <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+</div>
 <mat-card>
   <table class="user-table">
     <tr>
@@ -5,11 +10,26 @@
       <th>E-Mail</th>
       <th class="m-hide">Division</th>
     </tr>
+    <!--
     <tr *ngFor="let user of allUsers" [routerLink]="['/user/' + user.customIdName]">
       <td matTooltip="Show details"> {{ user.firstName }} {{ user.lastName }}</td>
       <td matTooltip="Show details"> {{ user.email }} </td>
       <td class="mobile-hide" matTooltip="Show details"> {{ user.division }}</td>
     </tr>
+    -->
+    <ng-container *ngFor="let user of allUsers">
+      <tr
+        *ngIf="searchText === ''||
+          user.firstName.toLowerCase().includes(searchText) ||
+          user.lastName.toLowerCase().includes(searchText) ||
+          user.division.toLowerCase().includes(searchText)"
+        [routerLink]="['/user/' + user.customIdName]"
+      >
+        <td> {{ user.firstName }} {{ user.lastName }}</td>
+        <td> {{ user.email }} </td>
+        <td> {{ user.division }}</td>
+      </tr>
+    </ng-container>
   </table>
 </mat-card>
 <button (click)="openDialog()" class="add-user-btn" mat-fab color="primary" matTooltip="Add staff">

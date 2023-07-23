@@ -14,6 +14,7 @@ export class UserComponent {
   user = new User();
   user$!: Observable<any>;
   allUsers!: Array<any>; // Empty array to save changes.
+  searchText: string = '';
 
   constructor(private firestore: Firestore, public dialog: MatDialog) {
     /**
@@ -36,4 +37,13 @@ export class UserComponent {
   openDialog() {
     const dialogRef = this.dialog.open(DialogAddUserComponent);
   }
+
+
+  /**
+   * This search method will be called when custom event (user typing) from child-component (searchComponent) is raised.
+   */
+    onSearchTextEntered(searchValue: string) {
+      this.searchText = searchValue;
+      // console.log(this.searchText);
+    }
 }

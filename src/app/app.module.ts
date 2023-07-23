@@ -40,6 +40,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 // Charts
 import { UserChartComponent } from './components/user-chart/user-chart.component';
 import { NgChartsModule } from 'ng2-charts';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { NgChartsModule } from 'ng2-charts';
     DialogEditUserComponent,
     DialogEditPicComponent,
     UserChartComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
