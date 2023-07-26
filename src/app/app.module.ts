@@ -41,6 +41,11 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { UserChartComponent } from './components/user-chart/user-chart.component';
 import { NgChartsModule } from 'ng2-charts';
 import { SearchComponent } from './components/search/search.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { PasswordRecoveryComponent } from './components/auth/password-recovery/password-recovery.component';
+import { MainComponent } from './components/main/main.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+
 
 @NgModule({
   declarations: [
@@ -54,6 +59,10 @@ import { SearchComponent } from './components/search/search.component';
     DialogEditPicComponent,
     UserChartComponent,
     SearchComponent,
+    LoginComponent,
+    PasswordRecoveryComponent,
+    MainComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
