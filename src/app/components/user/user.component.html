@@ -23,7 +23,7 @@
           user.firstName.toLowerCase().includes(searchText) ||
           user.lastName.toLowerCase().includes(searchText) ||
           user.division.toLowerCase().includes(searchText)"
-        [routerLink]="['/user/' + user.customIdName]"
+        [routerLink]="['/main/user/' + user.customIdName]"
       >
         <td> {{ user.firstName }} {{ user.lastName }}</td>
         <td> {{ user.email }} </td>
