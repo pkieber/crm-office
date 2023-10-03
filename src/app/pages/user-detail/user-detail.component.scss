@@ -1,0 +1,44 @@
+.user-detail-header {
+  min-height: 250px;
+  background-color: var(--themeColor);
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+
+  .user-details-box {
+    display: flex;
+    padding: 10px;
+  }
+
+  img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 100%;
+    cursor: pointer;
+  }
+}
+
+.user-details {
+  margin-left: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100px;
+
+  h2 {
+    margin-bottom: 0;
+  }
+}
+
+.pin-right-upper-corner {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.btn-container {
+  margin: 16px;
+}
+
+

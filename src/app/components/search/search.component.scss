@@ -10,10 +10,6 @@
   position: relative;
 }
 
-mat-form-field {
-  margin-right: 8px;
-}
-
 mat-icon {
   cursor: pointer;
 }
@@ -28,4 +24,8 @@ mat-icon {
   position: absolute;
   right: 10px;
   top: 16px;
+}
+
+.mat-mdc-form-field {
+  padding-top: 0px;
 }

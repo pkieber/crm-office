@@ -6,6 +6,7 @@
     <ul class="menu-items">
       <li matTooltip="Show graph" routerLink="/main/dashboard" routerLinkActive="router-link-active"><mat-icon>fact_check</mat-icon>Dashboard</li>
       <li matTooltip="Show table" routerLink="/main/user" ><mat-icon>group</mat-icon>Staff</li>
+      <li matTooltip="Show table" routerLink="/main/notes" ><mat-icon>note</mat-icon>Notes</li>
     </ul>
   </mat-drawer>
   <div>
@@ -16,6 +17,9 @@
         </button>
         <button matTooltip="Show table" routerLink="/main/user" mat-icon-button class="example-icon desktop-hide">
           <mat-icon>group</mat-icon>
+        </button>
+        <button matTooltip="Show table" routerLink="/main/notes" mat-icon-button class="example-icon desktop-hide">
+          <mat-icon>note</mat-icon>
         </button>
         <button matTooltip="Toggle sidebar" mat-icon-button (click)="drawer.toggle()" class="mobile-hide">
           <mat-icon>menu</mat-icon>

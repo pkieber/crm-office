@@ -7,8 +7,8 @@ import { ToastrModule } from 'ngx-toastr';
 
 // Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { UserComponent } from './components/user/user.component';
-import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { UserComponent } from './pages/user/user.component';
+import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { DialogEditAddressComponent } from './components/dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from './components/dialog-edit-user/dialog-edit-user.component';
 import { DialogEditPicComponent } from './components/dialog-edit-pic/dialog-edit-pic.component';
@@ -39,13 +39,17 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 // Charts
-import { UserChartComponent } from './components/user-chart/user-chart.component';
+import { UserChartComponent } from './pages/user-chart/user-chart.component';
 import { NgChartsModule } from 'ng2-charts';
 import { SearchComponent } from './components/search/search.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { PasswordRecoveryComponent } from './components/auth/password-recovery/password-recovery.component';
 import { MainComponent } from './components/main/main.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { NotesComponent } from './pages/notes/notes.component';
+import { DialogAddNoteComponent } from './components/dialog-add-note/dialog-add-note.component';
+import { DialogEditNoteComponent } from './components/dialog-edit-note/dialog-edit-note.component';
+import { NoteDetailComponent } from './pages/note-detail/note-detail.component';
 
 
 @NgModule({
@@ -64,6 +68,10 @@ import { RegisterComponent } from './components/auth/register/register.component
     PasswordRecoveryComponent,
     MainComponent,
     RegisterComponent,
+    NotesComponent,
+    DialogAddNoteComponent,
+    DialogEditNoteComponent,
+    NoteDetailComponent,
   ],
   imports: [
     BrowserModule,

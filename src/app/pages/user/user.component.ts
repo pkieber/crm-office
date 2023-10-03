@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
+import { DialogAddUserComponent } from '../../components/dialog-add-user/dialog-add-user.component';
 import { User } from 'src/models/user.class';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
