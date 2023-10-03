@@ -83,3 +83,31 @@ mat-card {
     display: none;
   }
 }
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.action-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  button {
+    margin-top: 20px;
+  }
+}
+
+.card-box {
+  margin: 10px;
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+  scroll-behavior: smooth;
+
+  @media (max-width: 750px) {
+    width: 100%;
+  }
+}

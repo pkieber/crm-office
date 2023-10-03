@@ -2,35 +2,39 @@
   <h2>Notes</h2>
   <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
 </div>
-<mat-card>
-  <table class="user-table"  (mouseenter)="showButtons = true" (mouseleave)="showButtons = false">
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th *ngIf="showButtons">Action</th>
-    </tr>
-    <ng-container *ngFor="let note of allNotes">
-      <tr
-        *ngIf="searchText === ''||
-          note.title.toLowerCase().includes(searchText) ||
-          note.description.toLowerCase().includes(searchText)"
-      >
-        <td> {{ note.title }} </td>
-        <td> {{ note.description }}</td>
-        <td>
-          <div class="action-btn">
-            <button mat-stroked-button color="primary" [routerLink]="['/main/notes/' + note.customIdName]" *ngIf="showButtons">
-              <mat-icon class="mat-18">edit</mat-icon>
-            </button>
-            <button mat-stroked-button color="accent" (click)="onDelete(note.customIdName)" *ngIf="showButtons">
-              <mat-icon class="mat-18">delete</mat-icon>
-            </button>
-          </div>
-        </td>
-      </tr>
-    </ng-container>
-  </table>
-</mat-card>
+
+<div class="card-container">
+  <ng-container *ngFor="let note of allNotes">
+    <mat-card
+      class="card-box"
+      (mouseenter)="showButtons = true"
+      (mouseleave)="showButtons = false"
+      *ngIf="searchText === ''||
+        note.title.toLowerCase().includes(searchText) ||
+        note.description.toLowerCase().includes(searchText)"
+    >
+      <mat-card-header>
+        <mat-card-title>{{ note.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ note.description }}</p>
+      </mat-card-content>
+      <mat-card-actions *ngIf="showButtons" class="action-btn">
+        <button mat-stroked-button color="primary" [routerLink]="['/main/notes/' + note.customIdName]" *ngIf="showButtons">
+          <mat-icon class="mat-18">edit</mat-icon>
+        </button>
+        <button mat-stroked-button color="accent" (click)="onDelete(note.customIdName)" *ngIf="showButtons">
+          <mat-icon class="mat-18">delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+</div>
+
 <button (click)="openDialog()" class="add-user-btn" mat-fab color="primary" matTooltip="Add note">
   <mat-icon>add</mat-icon>
 </button>
+
+
+
+
