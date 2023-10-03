@@ -19,7 +19,10 @@ export class DialogEditPicComponent {
     "user4.png"
   ];
 
-  constructor(private firestore: Firestore, public dialogRef: MatDialogRef<DialogEditPicComponent>) {}
+  constructor(
+    private firestore: Firestore,
+    public dialogRef: MatDialogRef<DialogEditPicComponent>
+  ) {}
 
 
   async saveUserPic(picture: string) {

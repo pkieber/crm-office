@@ -1,33 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from 'src/models/user.class';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent {
-  user = new User();
+export class UserComponent implements OnInit {
+  userId!: string;
   user$!: Observable<any>;
-  allUsers!: Array<any>; // Empty array to save changes.
-  searchText: string = '';
+  allUsers: User[] = [];
 
-  constructor(private firestore: Firestore, public dialog: MatDialog) {
-    /**
-     * initializes the userCollection reference to the 'users' collection,
-     * ...retrieves the collection data as an observable using collectionData,
-     * ... and subscribes to the observable to handle the emitted changes by updating the allUsers property.
-     */
-    const userCollection = collection(this.firestore, 'users');
-    this.user$ = collectionData(userCollection);
-    this.user$.subscribe(( changes: any ) => {
-      this.allUsers = changes;
-      // console.log('Received changes from DB', changes);
+  searchText: string = '';
+  public showButtons = false;
+
+
+  constructor(
+    public dialog: MatDialog,
+    private userService: UserService
+  ) { }
+
+
+  ngOnInit(): void {
+    this.loadUser();
+  }
+
+
+  loadUser() {
+    this.userService.loadUser().subscribe((data: any) => {
+      this.allUsers = data;
     });
+  }
+
+
+  onDelete(userId: string) {
+    this.userService.deletUser(userId);
   }
 
 

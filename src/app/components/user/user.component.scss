@@ -68,6 +68,16 @@ mat-card {
   }
 }
 
+.action-btn {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+
+  button {
+    //border: none;
+  }
+}
+
 @media (max-width: 360px) {
   .mobile-hide {
     display: none;

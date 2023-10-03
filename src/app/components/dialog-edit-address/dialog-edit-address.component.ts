@@ -13,7 +13,10 @@ export class DialogEditAddressComponent {
   userId!: string;
   loading = false;
 
-  constructor(private firestore: Firestore, public dialogRef: MatDialogRef<DialogEditAddressComponent>) {}
+  constructor(
+    private firestore: Firestore,
+    public dialogRef: MatDialogRef<DialogEditAddressComponent>
+  ) {}
 
 
   /**
