@@ -13,7 +13,10 @@ export class DialogEditUserComponent {
   loading = false;
   userId!: string;
 
-  constructor(private firestore: Firestore, public dialogRef: MatDialogRef<DialogEditUserComponent>) {}
+  constructor(
+    private firestore: Firestore,
+    public dialogRef: MatDialogRef<DialogEditUserComponent>
+  ) {}
 
 
   /**

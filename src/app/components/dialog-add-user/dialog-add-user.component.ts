@@ -15,7 +15,10 @@ export class DialogAddUserComponent {
   loading = false;
   user$!: Observable<any>;
 
-  constructor(private firestore: Firestore, public dialogRef: MatDialogRef<DialogAddUserComponent>) {}
+  constructor(
+    private firestore: Firestore,
+    public dialogRef: MatDialogRef<DialogAddUserComponent>
+  ) {}
 
 
   /**
@@ -23,7 +26,6 @@ export class DialogAddUserComponent {
    */
   async saveUser() {
     this.user.birthDate = this.birthDate.getTime(); // OKAY
-    // console.log('Current user: ', this.user);
     this.loading = true;
     const userCollection = collection(this.firestore, 'users');
     let result = await addDoc(userCollection, this.user.toJSON());
@@ -31,7 +33,6 @@ export class DialogAddUserComponent {
     // Add ID to user.name
     const docRef = doc(userCollection, result['id']);
     this.user.customIdName = result['id'];
-    // console.log('Custom ID: ', this.user.customIdName);
     updateDoc(docRef, this.user.toJSON());
 
     // Stop loader and close dialog

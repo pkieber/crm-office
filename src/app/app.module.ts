@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 // Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -89,6 +90,8 @@ import { RegisterComponent } from './components/auth/register/register.component
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
+    // Alerts
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,33 +1,35 @@
 <div class="title-container">
   <h2>Overview Staff</h2>
-  <!--Search function. Here you have to bind child- and parent-component (see "searchTextChanged")!-->
   <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
 </div>
 <mat-card>
-  <table class="user-table">
+  <table class="user-table"  (mouseenter)="showButtons = true" (mouseleave)="showButtons = false">
     <tr>
       <th>Name</th>
       <th>E-Mail</th>
       <th class="m-hide">Division</th>
+      <th *ngIf="showButtons">Action</th>
     </tr>
-    <!--
-    <tr *ngFor="let user of allUsers" [routerLink]="['/user/' + user.customIdName]">
-      <td matTooltip="Show details"> {{ user.firstName }} {{ user.lastName }}</td>
-      <td matTooltip="Show details"> {{ user.email }} </td>
-      <td class="mobile-hide" matTooltip="Show details"> {{ user.division }}</td>
-    </tr>
-    -->
     <ng-container *ngFor="let user of allUsers">
       <tr
         *ngIf="searchText === ''||
           user.firstName.toLowerCase().includes(searchText) ||
           user.lastName.toLowerCase().includes(searchText) ||
           user.division.toLowerCase().includes(searchText)"
-        [routerLink]="['/main/user/' + user.customIdName]"
       >
         <td> {{ user.firstName }} {{ user.lastName }}</td>
         <td> {{ user.email }} </td>
         <td> {{ user.division }}</td>
+        <td>
+          <div class="action-btn">
+            <button mat-stroked-button color="primary" [routerLink]="['/main/user/' + user.customIdName]" *ngIf="showButtons">
+              <mat-icon class="mat-18">edit</mat-icon>
+            </button>
+            <button mat-stroked-button color="accent" (click)="onDelete(user.customIdName)" *ngIf="showButtons">
+              <mat-icon class="mat-18">delete</mat-icon>
+            </button>
+          </div>
+        </td>
       </tr>
     </ng-container>
   </table>
