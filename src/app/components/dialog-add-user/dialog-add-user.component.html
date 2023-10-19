@@ -66,6 +66,7 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Select Function</mat-label>
         <mat-select [disabled]="loading" [(ngModel)]="user.title" name="title">
+          <mat-option value="Admin">Admin</mat-option>
           <mat-option value="Management">Management</mat-option>
           <mat-option value="Staff">Staff</mat-option>
           <mat-option value="Contractor">Contractor</mat-option>

@@ -1,5 +1,21 @@
 mat-grid-tile {
-  background: lightblue;
+  background: var(--themeColorRed);
+}
+
+.bg-grid1 {
+  background-color: #316879
+}
+
+.bg-grid2 {
+  background-color: #f47a60;
+}
+
+.bg-grid3 {
+  background-color: #7fe7dc;
+}
+
+.bg-grid4 {
+  background-color: #ced7d8;
 }
 
 .grid-title {
@@ -15,3 +31,6 @@ mat-grid-tile {
     cursor: pointer;
   }
 }
+
+
+
