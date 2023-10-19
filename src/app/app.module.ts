@@ -30,6 +30,7 @@ import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 // Firebase
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -51,6 +52,7 @@ import { DialogAddNoteComponent } from './components/dialog-add-note/dialog-add-
 import { DialogEditNoteComponent } from './components/dialog-edit-note/dialog-edit-note.component';
 import { NoteDetailComponent } from './pages/note-detail/note-detail.component';
 import { PasswordsComponent } from './pages/passwords/passwords.component';
+import { OverviewComponent } from './pages/overview/overview.component';
 
 
 @NgModule({
@@ -74,6 +76,7 @@ import { PasswordsComponent } from './pages/passwords/passwords.component';
     DialogEditNoteComponent,
     NoteDetailComponent,
     PasswordsComponent,
+    OverviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,6 +97,7 @@ import { PasswordsComponent } from './pages/passwords/passwords.component';
     MatProgressBarModule,
     MatCardModule,
     MatMenuModule,
+    MatGridListModule,
     NgChartsModule,
     // Firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),

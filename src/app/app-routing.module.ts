@@ -11,6 +11,7 @@ import { NotesComponent } from './pages/notes/notes.component';
 import { NoteDetailComponent } from './pages/note-detail/note-detail.component';
 import { PasswordsComponent } from './pages/passwords/passwords.component';
 import { AuthGuard } from './services/auth.guard';
+import { OverviewComponent } from './pages/overview/overview.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: '', component: MainComponent, canActivate: [AuthGuard],
     title: 'Simple-CRM',
     children: [
+      { path: '', component: OverviewComponent, canActivate: [AuthGuard]},
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
       { path: 'user', component: UserComponent, canActivate: [AuthGuard]},
       { path: 'user/:id', component: UserDetailComponent, canActivate: [AuthGuard]},
