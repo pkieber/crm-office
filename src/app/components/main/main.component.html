@@ -1,7 +1,7 @@
 <mat-drawer-container class="mat-drawer-container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
     <div class="logo-container">
-      <img class="logo" src="assets/img/logo.png">
+      <img class="logo" src="assets/img/logo.png" routerLink="/">
     </div>
     <ul class="menu-items">
       <li matTooltip="Show graph" routerLink="/dashboard" routerLinkActive="router-link-active"><mat-icon>fact_check</mat-icon>Dashboard</li>
@@ -13,6 +13,9 @@
   <div>
     <p>
       <mat-toolbar color="primary">
+        <button matTooltip="Overview" routerLink="/" routerLinkActive="router-link-active" mat-icon-button class="example-icon desktop-hide">
+          <mat-icon>home</mat-icon>
+        </button>
         <button matTooltip="Show graph" routerLink="/dashboard" routerLinkActive="router-link-active" mat-icon-button class="example-icon desktop-hide">
           <mat-icon>fact_check</mat-icon>
         </button>
@@ -28,7 +31,7 @@
         <button matTooltip="Toggle sidebar" mat-icon-button (click)="drawer.toggle()" class="mobile-hide">
           <mat-icon>menu</mat-icon>
         </button>
-        <span class="mobile-hide">Manage Your Business</span>
+        <span class="mobile-hide" routerLink="/">Manage Your Business</span>
         <span class="spacer"></span>
         <button (click)="onLogout()" matTooltip="Logout" mat-icon-button class="example-icon">
           <mat-icon>logout</mat-icon>

@@ -20,7 +20,7 @@
         <p>{{ note.description }}</p>
       </mat-card-content>
       <mat-card-actions *ngIf="showButtons" class="action-btn">
-        <button mat-stroked-button color="primary" [routerLink]="['/main/notes/' + note.customIdName]" *ngIf="showButtons">
+        <button mat-stroked-button color="primary" [routerLink]="['/notes/' + note.customIdName]" *ngIf="showButtons">
           <mat-icon class="mat-18">edit</mat-icon>
         </button>
         <button mat-stroked-button color="accent" (click)="onDelete(note.customIdName)" *ngIf="showButtons">

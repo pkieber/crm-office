@@ -1,7 +1,7 @@
 <p>overview works!</p>
 <mat-grid-list cols="2" rowHeight="2:1">
-  <mat-grid-tile>1</mat-grid-tile>
-  <mat-grid-tile>2</mat-grid-tile>
-  <mat-grid-tile>3</mat-grid-tile>
-  <mat-grid-tile>4</mat-grid-tile>
+  <mat-grid-tile matTooltip="Show graph" routerLink="/dashboard"><div class="grid-title"><mat-icon>fact_check</mat-icon>Dashboard</div></mat-grid-tile>
+  <mat-grid-tile matTooltip="Show notes" routerLink="/notes"><div class="grid-title"><mat-icon>note</mat-icon>Notes</div></mat-grid-tile>
+  <mat-grid-tile matTooltip="Show staff" routerLink="/user"><div class="grid-title"><mat-icon>group</mat-icon>Staff</div></mat-grid-tile>
+  <mat-grid-tile matTooltip="Show passwords" routerLink="/passwords"><div class="grid-title"><mat-icon>lock</mat-icon>Passwords</div></mat-grid-tile>
 </mat-grid-list>
