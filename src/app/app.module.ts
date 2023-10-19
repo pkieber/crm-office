@@ -50,6 +50,7 @@ import { NotesComponent } from './pages/notes/notes.component';
 import { DialogAddNoteComponent } from './components/dialog-add-note/dialog-add-note.component';
 import { DialogEditNoteComponent } from './components/dialog-edit-note/dialog-edit-note.component';
 import { NoteDetailComponent } from './pages/note-detail/note-detail.component';
+import { PasswordsComponent } from './pages/passwords/passwords.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { NoteDetailComponent } from './pages/note-detail/note-detail.component';
     DialogAddNoteComponent,
     DialogEditNoteComponent,
     NoteDetailComponent,
+    PasswordsComponent,
   ],
   imports: [
     BrowserModule,

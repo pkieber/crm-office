@@ -9,19 +9,22 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { MainComponent } from './components/main/main.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { NoteDetailComponent } from './pages/note-detail/note-detail.component';
+import { PasswordsComponent } from './pages/passwords/passwords.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent},
-  { path: 'password-recovery', component: PasswordRecoveryComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'password-recovery', component: PasswordRecoveryComponent, canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent},
-  { path: 'main', component: MainComponent,
+  { path: '', component: MainComponent, canActivate: [AuthGuard],
     title: 'Simple-CRM',
     children: [
-      { path: 'dashboard', component: DashboardComponent},
-      { path: 'user', component: UserComponent},
-      { path: 'user/:id', component: UserDetailComponent},
-      { path: 'notes', component: NotesComponent},
-      { path: 'notes/:id', component: NoteDetailComponent},
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+      { path: 'user', component: UserComponent, canActivate: [AuthGuard]},
+      { path: 'user/:id', component: UserDetailComponent, canActivate: [AuthGuard]},
+      { path: 'notes', component: NotesComponent, canActivate: [AuthGuard]},
+      { path: 'notes/:id', component: NoteDetailComponent, canActivate: [AuthGuard]},
+      { path: 'passwords', component: PasswordsComponent, canActivate: [AuthGuard]},
     ]
   }
 ];

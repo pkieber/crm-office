@@ -4,29 +4,33 @@
       <img class="logo" src="assets/img/logo.png">
     </div>
     <ul class="menu-items">
-      <li matTooltip="Show graph" routerLink="/main/dashboard" routerLinkActive="router-link-active"><mat-icon>fact_check</mat-icon>Dashboard</li>
-      <li matTooltip="Show table" routerLink="/main/user" ><mat-icon>group</mat-icon>Staff</li>
-      <li matTooltip="Show table" routerLink="/main/notes" ><mat-icon>note</mat-icon>Notes</li>
+      <li matTooltip="Show graph" routerLink="/dashboard" routerLinkActive="router-link-active"><mat-icon>fact_check</mat-icon>Dashboard</li>
+      <li matTooltip="Show staff" routerLink="/user" ><mat-icon>group</mat-icon>Staff</li>
+      <li matTooltip="Show notes" routerLink="/notes" ><mat-icon>note</mat-icon>Notes</li>
+      <li matTooltip="Show passwords" routerLink="/passwords" ><mat-icon>lock</mat-icon>Passwords</li>
     </ul>
   </mat-drawer>
   <div>
     <p>
       <mat-toolbar color="primary">
-        <button matTooltip="Show graph" routerLink="/main/dashboard" routerLinkActive="router-link-active" mat-icon-button class="example-icon desktop-hide">
+        <button matTooltip="Show graph" routerLink="/dashboard" routerLinkActive="router-link-active" mat-icon-button class="example-icon desktop-hide">
           <mat-icon>fact_check</mat-icon>
         </button>
-        <button matTooltip="Show table" routerLink="/main/user" mat-icon-button class="example-icon desktop-hide">
+        <button matTooltip="Show staff" routerLink="/user" mat-icon-button class="example-icon desktop-hide">
           <mat-icon>group</mat-icon>
         </button>
-        <button matTooltip="Show table" routerLink="/main/notes" mat-icon-button class="example-icon desktop-hide">
+        <button matTooltip="Show notes" routerLink="/notes" mat-icon-button class="example-icon desktop-hide">
           <mat-icon>note</mat-icon>
+        </button>
+        <button matTooltip="Show passwords" routerLink="/passwords" mat-icon-button class="example-icon desktop-hide">
+          <mat-icon>lock</mat-icon>
         </button>
         <button matTooltip="Toggle sidebar" mat-icon-button (click)="drawer.toggle()" class="mobile-hide">
           <mat-icon>menu</mat-icon>
         </button>
         <span class="mobile-hide">Manage Your Staff</span>
         <span class="spacer"></span>
-        <button (click)="logoutUser()" matTooltip="Logout" mat-icon-button class="example-icon">
+        <button (click)="onLogout()" matTooltip="Logout" mat-icon-button class="example-icon">
           <mat-icon>logout</mat-icon>
         </button>
       </mat-toolbar>

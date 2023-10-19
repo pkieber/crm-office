@@ -1,27 +1,43 @@
-<main>
-  <form>
-    <h1>Enter with your account</h1>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input type="email" matInput placeholder="Ex. pat@example.com">
-    </mat-form-field>
+<div class="container">
+  <mat-card>
+        <div class="text-box">
+          <mat-card-title>Login</mat-card-title>
+          <mat-card-subtitle>Please login to your admin account to post a new blog post</mat-card-subtitle>
+        </div>
 
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input type="password" matInput placeholder="Password">
-    </mat-form-field>
-    <div class="btn-container">
-      <mat-card-actions>
-        <a mat-button color="primary" routerLink="/password-recovery">Recover password</a>
-      </mat-card-actions>
-    </div>
-    <div class="btn-container mt-10">
-      <mat-card-actions>
-        <a mat-stroked-button color="primary" routerLink="/register">REGISTER</a>
-      </mat-card-actions>
-      <mat-card-actions>
-        <a mat-raised-button color="primary" routerLink="/main/dashboard">LOGIN</a>
-      </mat-card-actions>
-    </div>
-  </form>
-</main>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)" >
+          <div>
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email"
+              #Email="ngModel"
+              name="email"
+              ngModel
+              required
+              [ngClass]="{'is-invalid': Email.invalid && Email.touched}"
+            >
+          </div>
+          <div class="alert alert-danger" *ngIf="Email.touched && Email.invalid">
+            Email Cannot be Empty
+          </div>
+          <div>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              #Password="ngModel"
+              name="password"
+              ngModel
+              required
+              [ngClass]="{'is-invalid': Password.invalid && Password.touched}"
+            >
+            <div class="alert alert-danger" *ngIf="Password.touched && Password.invalid">
+              <div *ngIf="Password.errors?.['required']">Password Cannot be Empty</div>
+              <div *ngIf="Password.errors?.['email']">Password must be a valid email address</div>
+            </div>
+          </div>
+          <button mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button>
+        </form>
+  </mat-card>
+</div>
