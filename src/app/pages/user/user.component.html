@@ -5,18 +5,20 @@
 <mat-card>
   <table class="user-table"  (mouseenter)="showButtons = true" (mouseleave)="showButtons = false">
     <tr>
+      <!--<th>Position</th>-->
       <th>Name</th>
       <th>E-Mail</th>
       <th class="m-hide">Division</th>
       <th *ngIf="showButtons">Action</th>
     </tr>
-    <ng-container *ngFor="let user of allUsers">
+    <ng-container *ngFor="let user of allUsers; let i = index">
       <tr
         *ngIf="searchText === ''||
           user.firstName.toLowerCase().includes(searchText) ||
           user.lastName.toLowerCase().includes(searchText) ||
           user.division.toLowerCase().includes(searchText)"
       >
+        <!--<td> {{ i + 1 }} </td>-->
         <td> {{ user.firstName }} {{ user.lastName }}</td>
         <td> {{ user.email }} </td>
         <td> {{ user.division }}</td>
@@ -33,6 +35,9 @@
       </tr>
     </ng-container>
   </table>
+  <!--
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  -->
 </mat-card>
 <button (click)="openDialog()" class="add-user-btn" mat-fab color="primary" matTooltip="Add staff">
   <mat-icon>add</mat-icon>

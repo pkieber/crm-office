@@ -4,6 +4,7 @@ import { DialogAddUserComponent } from '../../components/dialog-add-user/dialog-
 import { User } from 'src/models/user.class';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+// import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-user',
@@ -12,8 +13,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserComponent implements OnInit {
   userId!: string;
-  user$!: Observable<any>;
+  i$!: Observable<any>;
   allUsers: User[] = [];
+  // index: number = 0;
 
   searchText: string = '';
   public showButtons = false;

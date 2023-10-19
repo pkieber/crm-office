@@ -31,6 +31,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 // Firebase
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -98,6 +100,8 @@ import { OverviewComponent } from './pages/overview/overview.component';
     MatCardModule,
     MatMenuModule,
     MatGridListModule,
+    MatPaginatorModule,
+    MatTableModule,
     NgChartsModule,
     // Firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),

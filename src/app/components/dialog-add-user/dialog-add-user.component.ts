@@ -25,7 +25,7 @@ export class DialogAddUserComponent {
    * Saves the user to the database.
    */
   async saveUser() {
-    this.user.birthDate = this.birthDate.getTime(); // OKAY
+    this.user.birthDate = this.birthDate.getTime();
     this.loading = true;
     const userCollection = collection(this.firestore, 'users');
     let result = await addDoc(userCollection, this.user.toJSON());
