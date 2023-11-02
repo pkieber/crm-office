@@ -10,9 +10,12 @@ export class LoginComponent {
 
   constructor(private authService: AuthService) { }
 
-  onSubmit(formValue: any) {
+  onSubmitAdmin(formValue: any) {
     this.authService.login(formValue.email, formValue.password)
+  }
 
+  onSubmitGuest(){
+    this.authService.anonSignIn();
   }
 
 }

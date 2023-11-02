@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, User } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, signInAnonymously, User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, map, Observable } from 'rxjs';
@@ -44,6 +44,20 @@ export class AuthService {
     this.auth.onAuthStateChanged((user) => {
       this.currentUser$.next(user);
     });
+  }
+
+
+  // Sign in anonymously.
+  anonSignIn() {
+    return signInAnonymously(this.auth)
+      .then(() => {
+        this.toastr.success('Logged in successfully', 'Success');
+        this.isLoggedInGuard = true; // used for router guard.
+        this.router.navigate(['/']);
+      })
+      .catch(() => {
+        this.toastr.warning('Login failed', 'Error');
+      });
   }
 
 

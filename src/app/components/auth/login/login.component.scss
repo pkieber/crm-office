@@ -1,3 +1,8 @@
+mat-card {
+  align-items: center;
+  width: 300px;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -12,7 +17,8 @@
 }
 
 .text-box {
-  padding: 16px;
+  padding-inline: 16px;
+  padding-bottom: 16px;
 }
 
 input {
@@ -23,4 +29,13 @@ input {
 .alert-danger {
   color: red;
   font-size: 12px;
+}
+
+button {
+  width: 120px;
+}
+
+.logo {
+  height: 60px;
+  padding: 20px;
 }

@@ -4,7 +4,6 @@
 }
 
 mat-toolbar, mat-toolbar-row {
-  min-height: 56px;
   height: 56px;
   background: var(--themeColor)!important;
 }
@@ -40,10 +39,7 @@ mat-toolbar, mat-toolbar-row {
 }
 
 .logo-container {
-  /*background: #c2185b; */ /* Theme color */
-  /* border-bottom: 1px solid rgba(255, 255, 255, 0.04); */
-  padding-inline: 16px;
-  min-height: 56px;
+  height: 54px;
   display: flex;
   align-items: center;
   background: var(--themeColor);
@@ -51,8 +47,14 @@ mat-toolbar, mat-toolbar-row {
 
 .logo {
   max-width: 100%;
-  height: 48px;
+  height: 45px;
+  padding-inline: 12px;
   cursor: pointer;
+
+  @media (max-width: 750px) {
+    padding-inline: 4px;
+    height: 32px;
+  }
 }
 
 

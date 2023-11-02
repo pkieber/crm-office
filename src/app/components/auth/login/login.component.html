@@ -1,11 +1,11 @@
 <div class="container">
   <mat-card>
+    <img class="logo" src="assets/img/logo.png">
         <div class="text-box">
-          <mat-card-title>Login</mat-card-title>
-          <mat-card-subtitle>Please login to your admin account</mat-card-subtitle>
+          <mat-card-title>Admin Login</mat-card-title>
+          <mat-card-subtitle>Login to your admin account</mat-card-subtitle>
         </div>
-
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)" >
+        <form #loginForm="ngForm" (ngSubmit)="onSubmitAdmin(loginForm.value)" >
           <div>
             <input
               type="email"
@@ -39,5 +39,6 @@
           </div>
           <button mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button>
         </form>
+        <button mat-raised-button (click)="onSubmitGuest()">Guest login</button>
   </mat-card>
 </div>
