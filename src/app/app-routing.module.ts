@@ -6,7 +6,7 @@ import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { PasswordRecoveryComponent } from './components/auth/password-recovery/password-recovery.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-import { MainComponent } from './components/main/main.component';
+import { MainComponent } from './pages/main/main.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { NoteDetailComponent } from './pages/note-detail/note-detail.component';
 import { PasswordsComponent } from './pages/passwords/passwords.component';

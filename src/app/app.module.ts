@@ -47,7 +47,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { SearchComponent } from './components/search/search.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { PasswordRecoveryComponent } from './components/auth/password-recovery/password-recovery.component';
-import { MainComponent } from './components/main/main.component';
+import { MainComponent } from './pages/main/main.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { DialogAddNoteComponent } from './components/dialog-add-note/dialog-add-note.component';
