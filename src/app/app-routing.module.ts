@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'password-recovery', component: PasswordRecoveryComponent, canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent},
   { path: '', component: MainComponent, canActivate: [AuthGuard],
-    title: 'Simple-CRM',
+    title: 'CRM - Office Manager',
     children: [
       { path: '', component: OverviewComponent, canActivate: [AuthGuard]},
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},

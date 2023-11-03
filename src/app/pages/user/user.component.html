@@ -24,10 +24,18 @@
         <td> {{ user.division }}</td>
         <td>
           <div class="action-btn">
-            <button mat-stroked-button color="primary" [routerLink]="['/user/' + user.customIdName]" *ngIf="showButtons">
+            <button
+              mat-stroked-button color="primary"
+              [routerLink]="['/user/' + user.customIdName]"
+              *ngIf="showButtons"
+            >
               <mat-icon class="mat-18">edit</mat-icon>
             </button>
-            <button mat-stroked-button color="accent" (click)="onDelete(user.customIdName)" *ngIf="showButtons">
+            <button
+              mat-stroked-button color="accent"
+              (click)="onDelete(user.customIdName)"
+              *ngIf="showButtons"
+            >
               <mat-icon class="mat-18">delete</mat-icon>
             </button>
           </div>
@@ -39,6 +47,11 @@
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
   -->
 </mat-card>
-<button (click)="openDialog()" class="add-user-btn" mat-fab color="primary" matTooltip="Add staff">
+<button
+  (click)="openDialog()"
+  class="add-user-btn"
+  mat-fab color="primary"
+  matTooltip="Add staff"
+>
   <mat-icon>add</mat-icon>
 </button>

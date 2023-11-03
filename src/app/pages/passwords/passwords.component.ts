@@ -29,6 +29,8 @@ export class PasswordsComponent {
   isSuccess: boolean = false;
   successMessage!: string;
 
+  public showButtons = false;
+
 
   constructor( private route: ActivatedRoute, private passwordManagerService: PasswordManagerService ) {
 
