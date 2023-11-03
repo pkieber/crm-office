@@ -19,6 +19,10 @@
 mat-card {
   padding: 14px;
   padding-inline: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 
 .user-table {
