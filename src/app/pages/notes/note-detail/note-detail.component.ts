@@ -12,13 +12,13 @@ import { DialogEditNoteComponent } from 'src/app/components/dialog-edit-note/dia
 })
 export class NoteDetailComponent {
 
-  noteId: string = '';
+  id: string = '';
   notes: Notes = new Notes();
 
 
   constructor(private firestore: Firestore, private route: ActivatedRoute, private dialog: MatDialog) {
     this.route.paramMap.subscribe( paramMap => {
-      this.noteId = paramMap.get('id') ?? '';
+      this.id = paramMap.get('id') ?? '';
       this.loadNotes();
     });
   }
@@ -26,7 +26,7 @@ export class NoteDetailComponent {
 
   loadNotes() {
     const notesCollection = collection(this.firestore, 'notes');
-    const docRef = doc(notesCollection, this.noteId);
+    const docRef = doc(notesCollection, this.id);
 
     docData(docRef).subscribe((notesCollection: any) => {
       this.notes = new Notes(notesCollection);
@@ -37,7 +37,7 @@ export class NoteDetailComponent {
   editNoteDetail() {
     const dialog = this.dialog.open(DialogEditNoteComponent);
     dialog.componentInstance.notes = new Notes (this.notes.toJSON());
-    dialog.componentInstance.noteId = this.noteId;
+    dialog.componentInstance.id = this.id;
   }
 
 }

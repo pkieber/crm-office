@@ -3,9 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/models/user.class';
 import { Firestore, collection, doc, docData } from '@angular/fire/firestore';
-import { DialogEditUserComponent } from '../../components/dialog-edit-user/dialog-edit-user.component';
-import { DialogEditAddressComponent } from '../../components/dialog-edit-address/dialog-edit-address.component';
-import { DialogEditPicComponent } from '../../components/dialog-edit-pic/dialog-edit-pic.component';
+import { DialogEditUserComponent } from '../../../components/dialog-edit-user/dialog-edit-user.component';
+import { DialogEditPicComponent } from '../../../components/dialog-edit-pic/dialog-edit-pic.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -14,13 +13,13 @@ import { DialogEditPicComponent } from '../../components/dialog-edit-pic/dialog-
 })
 export class UserDetailComponent {
 
-  userId: string = '';
+  id: string = '';
   user: User = new User();
 
 
   constructor(private firestore: Firestore, private route: ActivatedRoute, private dialog: MatDialog) {
     this.route.paramMap.subscribe( paramMap => {
-      this.userId = paramMap.get('id') ?? '';
+      this.id = paramMap.get('id') ?? '';
       this.getUser();
     });
   }
@@ -28,7 +27,7 @@ export class UserDetailComponent {
 
   getUser() {
     const userCollection = collection(this.firestore, 'users');
-    const docRef = doc(userCollection, this.userId);
+    const docRef = doc(userCollection, this.id);
 
 
     docData(docRef).subscribe((userCollection: any) => {
@@ -40,20 +39,13 @@ export class UserDetailComponent {
   editUserDetail() {
     const dialog = this.dialog.open(DialogEditUserComponent);
     dialog.componentInstance.user = new User (this.user.toJSON());
-    dialog.componentInstance.userId = this.userId;
-  }
-
-
-  editAddressDetail() {
-    const dialog = this.dialog.open(DialogEditAddressComponent);
-    dialog.componentInstance.user = new User (this.user.toJSON());
-    dialog.componentInstance.userId = this.userId;
+    dialog.componentInstance.id = this.id;
   }
 
 
   editPictureDetail() {
     const dialog = this.dialog.open(DialogEditPicComponent);
     dialog.componentInstance.user = new User (this.user.toJSON());
-    dialog.componentInstance.userId = this.userId;
+    dialog.componentInstance.userId = this.id;
   }
 }

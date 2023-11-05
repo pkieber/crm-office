@@ -26,13 +26,14 @@ export class DialogAddUserComponent {
    */
   async saveUser() {
     this.user.birthDate = this.birthDate.getTime();
+    console.log('Current user is: ', this.user);
     this.loading = true;
     const userCollection = collection(this.firestore, 'users');
     let result = await addDoc(userCollection, this.user.toJSON());
 
     // Add ID to user.name
     const docRef = doc(userCollection, result['id']);
-    this.user.customIdName = result['id'];
+    this.user.id = result['id'];
     updateDoc(docRef, this.user.toJSON());
 
     // Stop loader and close dialog

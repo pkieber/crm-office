@@ -1,7 +1,6 @@
 import { PasswordManagerService } from 'src/app/services/password-manager.service';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+
 import { AES, enc } from 'crypto-js'; // Imports encryption.
 import { pwEnvironment } from 'src/environments/environment.pw';
 
@@ -11,19 +10,12 @@ import { pwEnvironment } from 'src/environments/environment.pw';
   styleUrls: ['./passwords.component.scss']
 })
 export class PasswordsComponent {
-  siteId!: string;
-  siteName!: string;
-  siteURL!: string;
-  siteImgURL!: string;
-
   passwordList!: Array<any>;
-
-  // editPassword()
   passwordId!: string;
+  siteName!: string;
   email!: string;
   username!: string;
   password!: string;
-
   formState: string = 'Add New';
 
   isSuccess: boolean = false;
@@ -32,15 +24,7 @@ export class PasswordsComponent {
   public showButtons = false;
 
 
-  constructor( private route: ActivatedRoute, private passwordManagerService: PasswordManagerService ) {
-
-    this.route.queryParams.subscribe((val: any) => {
-      // console.log(val);
-      this.siteId = val.id;
-      this.siteName = val.siteName;
-      this.siteURL = val.siteURL;
-      this.siteImgURL = val.siteImgURL;
-    });
+  constructor(private passwordManagerService: PasswordManagerService ) {
 
     this.loadPasswords();
   }
@@ -53,6 +37,7 @@ export class PasswordsComponent {
 
 
   resetForm() {
+    this.siteName = '';
     this.email = '';
     this.username = '';
     this.password = '';
@@ -68,7 +53,7 @@ export class PasswordsComponent {
 
 
     if (this.formState == "Add New") {
-      this.passwordManagerService.addPassword(values, this.siteId)
+      this.passwordManagerService.addPassword(values)
       .then(()=> {
         this.showAlert('Data Saved Successfully');
         this.resetForm();
@@ -79,7 +64,7 @@ export class PasswordsComponent {
     }
 
     else if (this.formState == "Edit") {
-      this.passwordManagerService.updatePassword(this.siteId, this.passwordId, values)
+      this.passwordManagerService.updatePassword(this.passwordId, values)
         .then(()=> {
           this.showAlert('Data Edited Successfully');
           this.resetForm();
@@ -92,15 +77,16 @@ export class PasswordsComponent {
 
 
   loadPasswords() {
-    this.passwordManagerService.loadPasswords(this.siteId).subscribe(val => {
+    this.passwordManagerService.loadPasswords().subscribe(val => {
       this.passwordList = val;
     });
   }
 
 
-  editPassword(passwordId: string, email: string, username: string, password: string) {
+  editPassword(passwordId: string, siteName: string, email: string, username: string, password: string) {
     // Assign data variable to global variables.
     this.passwordId = passwordId;
+    this.siteName = siteName;
     this.email = email;
     this.username = username;
     this.password = password;
@@ -110,7 +96,7 @@ export class PasswordsComponent {
 
 
   deletePassword(passwordId: string) {
-    this.passwordManagerService.deletePassword(this.siteId, passwordId)
+    this.passwordManagerService.deletePassword(passwordId)
     .then(()=> {
       this.showAlert('Data Deleted Successfully');
     })
@@ -124,7 +110,6 @@ export class PasswordsComponent {
   encryptPassword(password: string) {
     const secretKey = pwEnvironment.secretKey; // unique 256-bit key
     const encryptedPassword = AES.encrypt(password, secretKey).toString(); // returns ecrypted pw and stores it in var.
-    console.log(encryptedPassword);
     return encryptedPassword;
   }
 

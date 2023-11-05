@@ -10,8 +10,9 @@ import { Firestore, collection, doc, updateDoc} from '@angular/fire/firestore';
 })
 export class DialogEditUserComponent {
   user!: User;
+  birthDate!: Date;
   loading = false;
-  userId!: string;
+  id!: string;
 
   constructor(
     private firestore: Firestore,
@@ -23,9 +24,10 @@ export class DialogEditUserComponent {
    * Updates the user's contact info and name in the database.
    */
   updateUser() {
+    this.user.birthDate = this.birthDate.getTime();
     this.loading = true;
     const userCollection = collection(this.firestore, 'users');
-    const docRef = doc(userCollection, this.userId);
+    const docRef = doc(userCollection, this.id);
     updateDoc(docRef, this.user.toJSON())
       .then(() => {
         // Stop loader and close dialog

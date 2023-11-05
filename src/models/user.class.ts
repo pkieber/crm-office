@@ -8,7 +8,7 @@ export class User {
   city!: string;
   division!: string;
   title!: string;
-  customIdName!: string;
+  id!: string;
   profilePic: string;
 
 
@@ -22,7 +22,7 @@ export class User {
     this.city = obj ? obj.city : '';
     this.division = obj ? obj.division : '';
     this.title = obj ? obj.title : '';
-    this.customIdName = obj ? obj.customIdName : '';
+    this.id = obj ? obj.id : '';
     this.profilePic = obj ? obj.profilePic : '' || 'profile.png';
   }
 
@@ -38,7 +38,7 @@ export class User {
       city: this.city,
       division: this.division,
       title: this.title,
-      customIdName: this.customIdName,
+      id: this.id,
       profilePic: this.profilePic,
     }
   }

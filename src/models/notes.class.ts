@@ -1,13 +1,13 @@
 export class Notes {
   title!: string;
   description!: string;
-  customIdName!: string;
+  id!: string;
 
 
   constructor(obj?: any) {
     this.title = obj ? obj.title : '';
     this.description = obj ? obj.description : '';
-    this.customIdName = obj ? obj.customIdName : '';
+    this.id = obj ? obj.id : '';
   }
 
 
@@ -15,7 +15,7 @@ export class Notes {
     return {
       title: this.title,
       description: this.description,
-      customIdName: this.customIdName,
+      id: this.id,
     }
   }
 }

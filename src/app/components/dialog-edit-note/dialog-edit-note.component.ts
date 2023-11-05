@@ -11,7 +11,7 @@ import { Firestore, collection, doc, updateDoc} from '@angular/fire/firestore';
 export class DialogEditNoteComponent {
   notes!: Notes;
   loading: boolean = false;
-  noteId!: string;
+  id!: string;
 
   constructor(
     private firestore: Firestore,
@@ -25,7 +25,7 @@ export class DialogEditNoteComponent {
   updateNote() {
     this.loading = true;
     const notesCollection = collection(this.firestore, 'notes');
-    const docRef = doc(notesCollection, this.noteId);
+    const docRef = doc(notesCollection, this.id);
     updateDoc(docRef, this.notes.toJSON())
       .then(() => {
         // Stop loader and close dialog

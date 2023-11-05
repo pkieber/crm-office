@@ -1,26 +1,15 @@
 <mat-card class="user-detail-header">
-  <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="userMenu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu matTooltip="Edit user" #userMenu="matMenu">
-    <button mat-menu-item (click)="editUserDetail()">Edit</button>
-  </mat-menu>
   <div class="user-details-box">
     <img matTooltip="Change picture" (click)="editPictureDetail()" src="assets/img/profile/{{ user.profilePic }}">
     <div class="user-details">
       <h2>{{ user.firstName }} {{ user.lastName }}</h2>
       <div> {{ user.division}} - {{ user.title }}</div>
       <div>{{ user.email }}</div>
+      <div>{{ user.birthDate | date: 'dd-MM-yyyy' }}</div>
     </div>
   </div>
 </mat-card>
 <mat-card class="mt-32">
-  <button matTooltip="Edit address" mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="addressMenu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #addressMenu="matMenu">
-    <button mat-menu-item (click)="editAddressDetail()">Edit</button>
-  </mat-menu>
   <mat-card-header>
     <mat-card-title>Address</mat-card-title>
   </mat-card-header>
@@ -30,5 +19,6 @@
   </mat-card-content>
   <div class="btn-container">
     <button mat-stroked-button color="primary" [routerLink]="['/user']"><mat-icon class="mat-18">arrow_back</mat-icon></button>
+    <button mat-stroked-button color="primary" (click)="editUserDetail()"><mat-icon class="mat-18">edit</mat-icon></button>
   </div>
 </mat-card>

@@ -4,12 +4,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
+
 
 // Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserComponent } from './pages/user/user.component';
-import { UserDetailComponent } from './pages/user-detail/user-detail.component';
-import { DialogEditAddressComponent } from './components/dialog-edit-address/dialog-edit-address.component';
+import { UserDetailComponent } from './pages/user/user-detail/user-detail.component';
 import { DialogEditUserComponent } from './components/dialog-edit-user/dialog-edit-user.component';
 import { DialogEditPicComponent } from './components/dialog-edit-pic/dialog-edit-pic.component';
 
@@ -31,8 +32,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 // Firebase
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -45,14 +46,14 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { UserChartComponent } from './pages/user-chart/user-chart.component';
 import { NgChartsModule } from 'ng2-charts';
 import { SearchComponent } from './components/search/search.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { PasswordRecoveryComponent } from './components/auth/password-recovery/password-recovery.component';
+import { LoginComponent } from './auth/login/login.component';
+import { PasswordRecoveryComponent } from './auth/password-recovery/password-recovery.component';
 import { MainComponent } from './pages/main/main.component';
-import { RegisterComponent } from './components/auth/register/register.component';
+import { RegisterComponent } from './auth/register/register.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { DialogAddNoteComponent } from './components/dialog-add-note/dialog-add-note.component';
 import { DialogEditNoteComponent } from './components/dialog-edit-note/dialog-edit-note.component';
-import { NoteDetailComponent } from './pages/note-detail/note-detail.component';
+import { NoteDetailComponent } from './pages/notes/note-detail/note-detail.component';
 import { PasswordsComponent } from './pages/passwords/passwords.component';
 import { OverviewComponent } from './pages/overview/overview.component';
 
@@ -64,7 +65,6 @@ import { OverviewComponent } from './pages/overview/overview.component';
     UserComponent,
     DialogAddUserComponent,
     UserDetailComponent,
-    DialogEditAddressComponent,
     DialogEditUserComponent,
     DialogEditPicComponent,
     UserChartComponent,
@@ -103,6 +103,7 @@ import { OverviewComponent } from './pages/overview/overview.component';
     MatPaginatorModule,
     MatTableModule,
     NgChartsModule,
+    HttpClientModule,
     // Firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

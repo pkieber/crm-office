@@ -6,69 +6,36 @@ import {
   doc, updateDoc,
   deleteDoc,
 } from '@angular/fire/firestore';
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PasswordManagerService {
 
-  constructor(private firestore: Firestore, private auth: Auth) { }
+  constructor(private firestore: Firestore) { }
 
 
-  addSite(data: object) {
-    const dbInstance = collection(this.firestore, 'sites');
+  addPassword(data: object) {
+    const dbInstance = collection(this.firestore, `passwords`);
     return addDoc(dbInstance, data);
   }
 
 
-  loadSites() {
-    const dbInstance = collection(this.firestore, 'sites');
+  loadPasswords() {
+    const dbInstance = collection(this.firestore, `passwords`);
     return collectionData(dbInstance, { idField: 'id' });
   }
 
 
-  updateSite(id: string, data: object) {
-    const docInstance = doc(this.firestore, 'sites', id);
+  updatePassword(passwordId: string, data: object) {
+    const docInstance = doc(this.firestore, `passwords`, passwordId);
     return updateDoc(docInstance, data);
   }
 
 
-  deleteSite(id: string) {
-    const docInstance = doc(this.firestore, 'sites', id);
+  deletePassword(passwordId: string) {
+    const docInstance = doc(this.firestore, `passwords`, passwordId);
     return deleteDoc(docInstance);
-  }
-
-
-  // Password Queries
-
-  // Sub-collection "passwords" is inside site-id of "sites"-collection.
-  addPassword(data: object, siteId: string) {
-    const dbInstance = collection(this.firestore, `sites/${siteId}/passwords`);
-    return addDoc(dbInstance, data);
-  }
-
-
-  loadPasswords(siteId: string) {
-    const dbInstance = collection(this.firestore, `sites/${siteId}/passwords`);
-    return collectionData(dbInstance, { idField: 'id' });
-  }
-
-
-  updatePassword(siteId: string, passwordId: string, data: object) {
-    const docInstance = doc(this.firestore, `sites/${siteId}/passwords`, passwordId);
-    return updateDoc(docInstance, data);
-  }
-
-
-  deletePassword(siteId: string, passwordId: string) {
-    const docInstance = doc(this.firestore, `sites/${siteId}/passwords`, passwordId);
-    return deleteDoc(docInstance);
-  }
-
-  // Login
-  login(email: string, password: string) {
-    return signInWithEmailAndPassword(this.auth, email, password);
   }
 
 }

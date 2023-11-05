@@ -11,7 +11,7 @@ import { DialogAddNoteComponent } from 'src/app/components/dialog-add-note/dialo
   styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent implements OnInit {
-  noteId!: string;
+  id!: string;
   note$!: Observable<any>;
   allNotes: Notes[] = [];
 

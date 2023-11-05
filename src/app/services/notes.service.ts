@@ -28,15 +28,15 @@ export class NotesService {
   }
 
 
-  updateNotes(notesId: string, data: object): Promise<void> {
-    const docInstance = doc(this.firestore, 'notes', notesId);
+  updateNotes(id: string, data: object): Promise<void> {
+    const docInstance = doc(this.firestore, 'notes', id);
     this.toastr.success('Data Updated Successfully');
     return updateDoc(docInstance, data);
   }
 
 
-  deleteNotes(notesId: string) {
-    const docInstance = doc(this.firestore, 'notes', notesId);
+  deleteNotes(id: string) {
+    const docInstance = doc(this.firestore, 'notes', id);
     this.toastr.success('Data Deleted Successfully');
     return deleteDoc(docInstance);
   }

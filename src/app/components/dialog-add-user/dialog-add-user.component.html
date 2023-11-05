@@ -7,46 +7,76 @@
     <div>
       <mat-form-field class="mr-16" appearance="outline">
         <mat-label>First Name</mat-label>
-        <input type="text" [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="First Name">
+        <input
+          type="text" [disabled]="loading"
+          [(ngModel)]="user.firstName"
+          matInput placeholder="First Name"
+        >
         <mat-icon matSuffix>person</mat-icon>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Last Name</mat-label>
-        <input type="text" [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Last Name">
+        <input
+          type="text" [disabled]="loading"
+          [(ngModel)]="user.lastName"
+          matInput placeholder="Last Name"
+        >
         <mat-icon matSuffix>person</mat-icon>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>E-Mail</mat-label>
-        <input type="email" [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="E-Mail">
+        <input
+          type="email" [disabled]="loading"
+          [(ngModel)]="user.email"
+          matInput placeholder="E-Mail"
+        >
         <mat-icon matSuffix>mail</mat-icon>
       </mat-form-field>
     </div>
+
     <div>
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Birth Date</mat-label>
-        <input type="date" [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="Birth Date" [matDatepicker]="picker">
-        <mat-datepicker-toggle matSuffix [for]="picker" matSuffix></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-label>Choose a birthdate</mat-label>
+        <input
+          matInput [matDatepicker]="picker"
+          [(ngModel)]="birthDate"
+        >
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
     </div>
+
     <div>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Street + House No.</mat-label>
-        <input type="text" [disabled]="loading" [(ngModel)]="user.street" matInput placeholder="Street + House No.">
+        <input
+          type="text" [disabled]="loading"
+          [(ngModel)]="user.street"
+          matInput placeholder="Street + House No."
+        >
         <mat-icon matSuffix>home</mat-icon>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="outline" class="mr-16">
         <mat-label>Zip code</mat-label>
-        <input type="number" [disabled]="loading" [(ngModel)]="user.zipCode" matInput placeholder="Zip Code">
+        <input
+          type="number" [disabled]="loading"
+          [(ngModel)]="user.zipCode"
+          matInput placeholder="Zip Code"
+        >
         <mat-icon matSuffix>home</mat-icon>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>City</mat-label>
-        <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="City">
+        <input
+          [disabled]="loading"
+          [(ngModel)]="user.city"
+          matInput placeholder="City"
+        >
         <mat-icon matSuffix>home</mat-icon>
       </mat-form-field>
     </div>

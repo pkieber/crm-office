@@ -30,7 +30,7 @@ export class DialogAddNoteComponent {
 
     // Add ID to user.name
     const docRef = doc(notesCollection, result['id']);
-    this.notes.customIdName = result['id'];
+    this.notes.id = result['id'];
     updateDoc(docRef, this.notes.toJSON());
 
     // Stop loader and close dialog

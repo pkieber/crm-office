@@ -29,15 +29,15 @@ export class UserService {
   }
 
 
-  updateUser(userId: string, data: object): Promise<void> {
-    const docInstance = doc(this.firestore, 'users', userId);
+  updateUser(id: string, data: object): Promise<void> {
+    const docInstance = doc(this.firestore, 'users', id);
     this.toastr.success('Data Updated Successfully');
     return updateDoc(docInstance, data);
   }
 
 
-  deletUser(userId: string) {
-    const docInstance = doc(this.firestore, 'users', userId);
+  deletUser(id: string) {
+    const docInstance = doc(this.firestore, 'users', id);
     this.toastr.success('Data Deleted Successfully');
     return deleteDoc(docInstance);
   }
