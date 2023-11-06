@@ -1,8 +1,10 @@
 <div class="title-container">
   <h2>Notes</h2>
-  <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+  <button (click)="openDialog()" class="add-user-btn" mat-fab color="primary" matTooltip="Add note">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
-
+<app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
 <div class="card-container">
   <ng-container *ngFor="let note of allNotes">
     <mat-card
@@ -31,9 +33,7 @@
   </ng-container>
 </div>
 
-<button (click)="openDialog()" class="add-user-btn" mat-fab color="primary" matTooltip="Add note">
-  <mat-icon>add</mat-icon>
-</button>
+
 
 
 

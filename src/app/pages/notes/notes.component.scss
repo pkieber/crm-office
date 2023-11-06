@@ -2,17 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  @media (max-width: 700px) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  margin-bottom: 16px;
 }
 
 .add-user-btn {
-  position: absolute;
-  right: 56px;
-  bottom: 56px;
   background: var(--themeColor)!important;
 }
 
@@ -76,10 +69,6 @@ mat-card {
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
-
-  button {
-    //border: none;
-  }
 }
 
 @media (max-width: 360px) {

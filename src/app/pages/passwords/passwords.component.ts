@@ -1,15 +1,24 @@
+import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { PasswordManagerService } from 'src/app/services/password-manager.service';
-import { Component } from '@angular/core';
-
-import { AES, enc } from 'crypto-js'; // Imports encryption.
+import { AES, enc } from 'crypto-js';
 import { pwEnvironment } from 'src/environments/environment.pw';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+
+export interface UserData {
+  siteName: string;
+  email: string;
+  username: string;
+  password: string;
+}
 
 @Component({
   selector: 'app-passwords',
   templateUrl: './passwords.component.html',
   styleUrls: ['./passwords.component.scss']
 })
-export class PasswordsComponent {
+export class PasswordsComponent implements OnInit, AfterViewInit {
   passwordList!: Array<any>;
   passwordId!: string;
   siteName!: string;
@@ -23,10 +32,38 @@ export class PasswordsComponent {
 
   public showButtons = false;
 
+  displayedColumns: string[] = ['siteName', 'email', 'username', 'password', 'action'];
+  dataSource: MatTableDataSource<UserData> = new MatTableDataSource<UserData>([]);
 
-  constructor(private passwordManagerService: PasswordManagerService ) {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-    this.loadPasswords();
+
+  constructor(private passwordManagerService: PasswordManagerService ) {}
+
+
+  ngOnInit(): void {
+    this.loadPasswordsFromFirestore();
+  }
+
+
+  ngAfterViewInit() {
+    if (this.paginator) {
+      this.dataSource.paginator = this.paginator;
+    }
+    if (this.sort) {
+      this.dataSource.sort = this.sort;
+    }
+  }
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 
@@ -49,8 +86,6 @@ export class PasswordsComponent {
   onSubmit(values: any) {
     const encryptedPassword = this.encryptPassword(values.password);
     values.password = encryptedPassword;
-    // console.log(values);
-
 
     if (this.formState == "Add New") {
       this.passwordManagerService.addPassword(values)
@@ -76,15 +111,28 @@ export class PasswordsComponent {
     }
 
 
-  loadPasswords() {
-    this.passwordManagerService.loadPasswords().subscribe(val => {
-      this.passwordList = val;
+  loadPasswordsFromFirestore() {
+    this.passwordManagerService.loadPasswords().subscribe((data: any) => {
+      const passwords: UserData[] = data.map((doc: any) => ({
+        siteName: doc.siteName,
+        email: doc.email,
+        username: doc.username,
+        password: doc.password,
+        id: doc.id,
+      }));
+
+      // Update passwordList
+      this.passwordList = passwords;
+
+      // Bind passwordList to the dataSource
+      this.dataSource = new MatTableDataSource<UserData>(this.passwordList);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
 
   editPassword(passwordId: string, siteName: string, email: string, username: string, password: string) {
-    // Assign data variable to global variables.
     this.passwordId = passwordId;
     this.siteName = siteName;
     this.email = email;
@@ -95,7 +143,7 @@ export class PasswordsComponent {
   }
 
 
-  deletePassword(passwordId: string) {
+  onDeletePassword(passwordId: string) {
     this.passwordManagerService.deletePassword(passwordId)
     .then(()=> {
       this.showAlert('Data Deleted Successfully');
@@ -108,14 +156,14 @@ export class PasswordsComponent {
 
   // Password encryption (https://www.npmjs.com/package/crypto-js)
   encryptPassword(password: string) {
-    const secretKey = pwEnvironment.secretKey; // unique 256-bit key
-    const encryptedPassword = AES.encrypt(password, secretKey).toString(); // returns ecrypted pw and stores it in var.
+    const secretKey = pwEnvironment.secretKey;
+    const encryptedPassword = AES.encrypt(password, secretKey).toString();
     return encryptedPassword;
   }
 
 
   decryptPassword(password: string) {
-    const secretKey = pwEnvironment.secretKey; // unique 256-bit key
+    const secretKey = pwEnvironment.secretKey;
     const decPassword = AES.decrypt(password, secretKey).toString(enc.Utf8);
     return decPassword;
   }
