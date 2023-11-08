@@ -3,10 +3,16 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+  height: 70px;
+
+  h2 {
+    margin: 0;
+  }
 }
 
 .add-user-btn {
-  background: var(--themeColor)!important;
+  background-color: rgb(255, 255, 255);
+  color: var(--themeColor)!important;
 }
 
 /* Structure */
@@ -28,11 +34,20 @@ table {
 .mat-mdc-form-field {
   font-size: 14px;
   width: 100%;
+  padding-top: 0!important;
 }
 
-.edit-user-btn {
-  margin: 2px;
-  background: var(--themeColor)!important;
+.action-btn-container {
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+
+  .edit-user-btn {
+    margin: 3px;
+    background-color: rgb(255, 255, 255);
+    color: var(--themeColor)!important;
+  }
 }
 
 .p-bottom {

@@ -3,10 +3,16 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+  height: 70px;
+
+  h2 {
+    margin: 0;
+  }
 }
 
 .add-user-btn {
-  background: var(--themeColor)!important;
+  background-color: rgb(255, 255, 255);
+  color: var(--themeColor)!important;
 }
 
 mat-card {
@@ -65,12 +71,6 @@ mat-card {
   }
 }
 
-.action-btn {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-}
-
 @media (max-width: 360px) {
   .mobile-hide {
     display: none;
@@ -83,12 +83,23 @@ mat-card {
   position: relative;
 }
 
-.action-btn {
+.action-btn-position {
   position: absolute;
   bottom: 0;
   right: 0;
+}
 
-  button {
+.action-btn-container {
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin-top: 20px;
+
+  .edit-user-btn {
+    margin: 3px;
+    background-color: rgb(255, 255, 255);
+    color: var(--themeColor)!important;
     margin-top: 20px;
   }
 }

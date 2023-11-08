@@ -1,5 +1,5 @@
 <div class="title-container">
-  <h2>Staff - Details</h2>
+  <h2>Manage Staff (Contact List)</h2>
   <button
     (click)="openDialog()"
     class="add-user-btn"
@@ -41,7 +41,7 @@
       <ng-container matColumnDef="action" stickyEnd>
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
         <td mat-cell *matCellDef="let row">
-          <div class="example-button-container">
+          <div class="action-btn-container">
             <button
               class="edit-user-btn"
               mat-mini-fab color="primary"

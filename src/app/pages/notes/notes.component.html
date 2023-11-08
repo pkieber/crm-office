@@ -1,5 +1,5 @@
 <div class="title-container">
-  <h2>Notes</h2>
+  <h2>Manage Notes</h2>
   <button (click)="openDialog()" class="add-user-btn" mat-fab color="primary" matTooltip="Add note">
     <mat-icon>add</mat-icon>
   </button>
@@ -21,20 +21,28 @@
       <mat-card-content>
         <p>{{ note.description }}</p>
       </mat-card-content>
-      <mat-card-actions *ngIf="showButtons" class="action-btn">
-        <button mat-stroked-button color="primary" [routerLink]="['/notes/' + note.id]" *ngIf="showButtons">
-          <mat-icon class="mat-18">edit</mat-icon>
-        </button>
-        <button mat-stroked-button color="accent" (click)="onDeleteNote(note.id)" *ngIf="showButtons">
-          <mat-icon class="mat-18">delete</mat-icon>
-        </button>
+
+      <mat-card-actions *ngIf="showButtons" class="action-btn-position">
+        <div class="action-btn-container">
+          <button
+            class="edit-user-btn"
+            mat-mini-fab color="primary"
+            [routerLink]="['/notes/' + note.id]"
+            *ngIf="showButtons"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            class="edit-user-btn"
+            mat-mini-fab color="primary"
+            (click)="onDeleteNote(note.id)"
+            *ngIf="showButtons"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </mat-card-actions>
+
     </mat-card>
   </ng-container>
 </div>
-
-
-
-
-
-
