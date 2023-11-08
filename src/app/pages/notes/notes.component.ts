@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { NotesService } from 'src/app/services/notes.service';
 import { Notes } from 'src/models/notes.class';
 import { DialogAddNoteComponent } from 'src/app/components/dialog-add-note/dialog-add-note.component';
+import { DialogDeleteConfirmComponent } from 'src/app/components/dialog-delete-confirm/dialog-delete-confirm.component';
 
 @Component({
   selector: 'app-notes',
@@ -37,8 +38,18 @@ export class NotesComponent implements OnInit {
   }
 
 
-  onDelete(noteId: string) {
-    this.notesService.deleteNotes(noteId);
+  /**
+   * Delete note after confirmation.
+   * @param noteId
+   */
+  onDeleteNote(noteId: string): void {
+    const dialogRef = this.dialog.open(DialogDeleteConfirmComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.notesService.deleteNotes(noteId);
+      }
+    });
   }
 
 

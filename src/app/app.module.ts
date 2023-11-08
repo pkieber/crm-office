@@ -58,6 +58,7 @@ import { NoteDetailComponent } from './pages/notes/note-detail/note-detail.compo
 import { PasswordsComponent } from './pages/passwords/passwords.component';
 import { OverviewComponent } from './pages/overview/overview.component';
 import { ImprintComponent } from './pages/imprint/imprint.component';
+import { DialogDeleteConfirmComponent } from './components/dialog-delete-confirm/dialog-delete-confirm.component';
 
 
 @NgModule({
@@ -82,6 +83,7 @@ import { ImprintComponent } from './pages/imprint/imprint.component';
     PasswordsComponent,
     OverviewComponent,
     ImprintComponent,
+    DialogDeleteConfirmComponent,
   ],
   imports: [
     BrowserModule,

@@ -25,7 +25,7 @@
         <button mat-stroked-button color="primary" [routerLink]="['/notes/' + note.id]" *ngIf="showButtons">
           <mat-icon class="mat-18">edit</mat-icon>
         </button>
-        <button mat-stroked-button color="accent" (click)="onDelete(note.id)" *ngIf="showButtons">
+        <button mat-stroked-button color="accent" (click)="onDeleteNote(note.id)" *ngIf="showButtons">
           <mat-icon class="mat-18">delete</mat-icon>
         </button>
       </mat-card-actions>

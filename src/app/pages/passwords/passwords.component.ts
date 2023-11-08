@@ -5,6 +5,8 @@ import { pwEnvironment } from 'src/environments/environment.pw';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DialogDeleteConfirmComponent } from 'src/app/components/dialog-delete-confirm/dialog-delete-confirm.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface UserData {
   siteName: string;
@@ -39,7 +41,10 @@ export class PasswordsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
 
-  constructor(private passwordManagerService: PasswordManagerService ) {}
+  constructor(
+    private passwordManagerService: PasswordManagerService,
+    public dialog: MatDialog,
+  ) {}
 
 
   ngOnInit(): void {
@@ -143,14 +148,18 @@ export class PasswordsComponent implements OnInit, AfterViewInit {
   }
 
 
-  onDeletePassword(passwordId: string) {
-    this.passwordManagerService.deletePassword(passwordId)
-    .then(()=> {
-      this.showAlert('Data Deleted Successfully');
-    })
-    .catch(err => {
-      console.log(err);
-    })
+  /**
+   * Delete password after confirmation.
+   * @param passwordId
+   */
+  onDeletePassword(passwordId: string): void {
+    const dialogRef = this.dialog.open(DialogDeleteConfirmComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.passwordManagerService.deletePassword(passwordId)
+      }
+    });
   }
 
 

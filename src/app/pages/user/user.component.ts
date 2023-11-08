@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DialogDeleteConfirmComponent } from 'src/app/components/dialog-delete-confirm/dialog-delete-confirm.component';
 
 
 @Component({
@@ -68,8 +69,18 @@ export class UserComponent implements OnInit, AfterViewInit {
   }
 
 
-  onDelete(userId: string) {
-    this.userService.deletUser(userId);
+  /**
+   * Delete user after confirmation.
+   * @param userId
+   */
+  onDelete(userId: string): void {
+    const dialogRef = this.dialog.open(DialogDeleteConfirmComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.userService.deletUser(userId);
+      }
+    });
   }
 
 
