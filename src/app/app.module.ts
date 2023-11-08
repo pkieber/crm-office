@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 // Components
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserComponent } from './pages/user/user.component';
 import { UserDetailComponent } from './pages/user/user-detail/user-detail.component';
 import { DialogEditUserComponent } from './components/dialog-edit-user/dialog-edit-user.component';
@@ -34,6 +34,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatRadioModule } from '@angular/material/radio';
 
 // Firebase
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -43,7 +44,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 // Charts
-import { UserChartComponent } from './pages/user-chart/user-chart.component';
+import { UserChartComponent } from './components/user-chart/user-chart.component';
 import { NgChartsModule } from 'ng2-charts';
 import { SearchComponent } from './components/search/search.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -56,6 +57,7 @@ import { DialogEditNoteComponent } from './components/dialog-edit-note/dialog-ed
 import { NoteDetailComponent } from './pages/notes/note-detail/note-detail.component';
 import { PasswordsComponent } from './pages/passwords/passwords.component';
 import { OverviewComponent } from './pages/overview/overview.component';
+import { ImprintComponent } from './pages/imprint/imprint.component';
 
 
 @NgModule({
@@ -79,6 +81,7 @@ import { OverviewComponent } from './pages/overview/overview.component';
     NoteDetailComponent,
     PasswordsComponent,
     OverviewComponent,
+    ImprintComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,6 +105,7 @@ import { OverviewComponent } from './pages/overview/overview.component';
     MatGridListModule,
     MatPaginatorModule,
     MatTableModule,
+    MatRadioModule,
     NgChartsModule,
     HttpClientModule,
     // Firebase

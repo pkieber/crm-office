@@ -1,22 +1,39 @@
 <mat-drawer-container class="mat-drawer-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
+  <mat-drawer
+    #drawer class="sidenav" mode="side"
+    [ngClass]="{
+      'option-1-background': selectedOption === '1',
+      'option-2-background': selectedOption === '2',
+      'option-3-background': selectedOption === '3'
+    }"
+  >
     <div class="logo-container">
       <img class="logo" src="assets/img/logo.png" routerLink="/">
     </div>
-    <ul class="menu-items">
-      <li matTooltip="Show graph" routerLink="/dashboard" routerLinkActive="router-link-active"><mat-icon>fact_check</mat-icon>Dashboard</li>
-      <li matTooltip="Show staff" routerLink="/user" ><mat-icon>group</mat-icon>Staff</li>
-      <li matTooltip="Show notes" routerLink="/notes" ><mat-icon>note</mat-icon>Notes</li>
-      <li matTooltip="Show passwords" routerLink="/passwords" ><mat-icon>lock</mat-icon>Passwords</li>
-    </ul>
+    <div class="menu-container">
+      <ul class="menu-items">
+        <li matTooltip="Show graph" routerLink="/dashboard" routerLinkActive="router-link-active"><mat-icon>fact_check</mat-icon>Dashboard</li>
+        <li matTooltip="Show staff" routerLink="/user" ><mat-icon>group</mat-icon>Staff</li>
+        <li matTooltip="Show notes" routerLink="/notes" ><mat-icon>note</mat-icon>Notes</li>
+        <li matTooltip="Show passwords" routerLink="/passwords" ><mat-icon>lock</mat-icon>Passwords</li>
+      </ul>
+      <ul class="menu-items setting">
+        <li matTooltip="Show imprint" routerLink="/legal" ><mat-icon>copyright</mat-icon>Imprint</li>
+      </ul>
+    </div>
   </mat-drawer>
   <div>
     <p>
-      <mat-toolbar color="primary">
-        <img class="desktop-hide logo" src="assets/img/logo.png" routerLink="/">
-        <button matTooltip="Overview" routerLink="/" routerLinkActive="router-link-active" mat-icon-button class="example-icon desktop-hide">
-          <mat-icon>home</mat-icon>
+      <mat-toolbar [ngClass]="{
+        'option-1-background': selectedOption === '1',
+        'option-2-background': selectedOption === '2',
+        'option-3-background': selectedOption === '3'
+        }"
+      >
+        <button matTooltip="Toggle sidebar" mat-icon-button (click)="drawer.toggle()" class="mobile-hide">
+          <mat-icon>menu</mat-icon>
         </button>
+        <img class="desktop-hide logo" src="assets/img/logo.png" routerLink="/">
         <button matTooltip="Show graph" routerLink="/dashboard" routerLinkActive="router-link-active" mat-icon-button class="example-icon desktop-hide">
           <mat-icon>fact_check</mat-icon>
         </button>
@@ -29,14 +46,25 @@
         <button matTooltip="Show passwords" routerLink="/passwords" mat-icon-button class="example-icon desktop-hide">
           <mat-icon>lock</mat-icon>
         </button>
-        <button matTooltip="Toggle sidebar" mat-icon-button (click)="drawer.toggle()" class="mobile-hide">
-          <mat-icon>menu</mat-icon>
+        <button matTooltip="Imprint" routerLink="/legal" routerLinkActive="router-link-active" mat-icon-button class="example-icon desktop-hide">
+          <mat-icon>copyright</mat-icon>
         </button>
         <span class="mobile-hide" routerLink="/">Manage Your Business</span>
         <span class="spacer"></span>
-        <button (click)="onLogout()" matTooltip="Logout" mat-icon-button class="example-icon">
+        <button [matMenuTriggerFor]="menu" #menuTrigger matTooltip="Open menu" matTooltip="Logout" mat-icon-button class="example-icon">
           <mat-icon>logout</mat-icon>
         </button>
+        <!-- Dialog-menu-->
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="onLogout()">Logout</button>
+          <button mat-menu-item routerLink="/legal">Legal</button>
+          <!-- Change color of toolbar -->
+          <mat-radio-group [(ngModel)]="selectedOption" class="color-picker" aria-label="Select an option">
+            <mat-radio-button value="1">Theme 1</mat-radio-button>
+            <mat-radio-button value="2">Theme 2</mat-radio-button>
+            <mat-radio-button value="3">Theme 3</mat-radio-button>
+          </mat-radio-group>
+        </mat-menu>
       </mat-toolbar>
     </p>
     <!-- insert content-->

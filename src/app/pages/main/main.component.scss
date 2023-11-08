@@ -5,7 +5,7 @@
 
 mat-toolbar, mat-toolbar-row {
   height: 56px;
-  background: var(--themeColor)!important;
+  /*background: var(--themeColor)!important;*/
 }
 
 /* Sidenav */
@@ -18,6 +18,8 @@ mat-toolbar, mat-toolbar-row {
 }
 
 .sidenav {
+  /*background: var(--themeColor)!important;*/
+  color: white;
   width: 300px;
 
   @media (max-width: 750px) {
@@ -42,7 +44,7 @@ mat-toolbar, mat-toolbar-row {
   height: 56px;
   display: flex;
   align-items: center;
-  background: var(--themeColor);
+  /*background: var(--themeColor);*/
 }
 
 .logo {
@@ -59,6 +61,12 @@ mat-toolbar, mat-toolbar-row {
 
 
 /* Sidenav-Menu */
+.setting {
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+}
+
 .menu-items {
   list-style-type: none;
   padding: 0;
@@ -93,4 +101,38 @@ mat-toolbar, mat-toolbar-row {
     padding-left: 16px;
     padding-right: 16px;
   }
+}
+
+/* Toolbar - color-picker */
+.color-picker {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgb(87, 87, 87);
+  padding-top: 8px;
+}
+
+.option-1-background {
+  background: var(--themeColor)!important;
+  color: white;
+}
+
+.option-2-background {
+  background: repeating-linear-gradient(
+    -55deg,
+    #222,
+    #222 10px,
+    #333 10px,
+    #333 20px
+  );
+  color: white;
+}
+
+.option-3-background {
+  background: linear-gradient(
+    90deg,
+    rgba(100,37,136,1) 21%,
+    rgba(23,4,91,1) 100%,
+    rgba(23,4,91,1) 100%
+  );
+  color: white;
 }

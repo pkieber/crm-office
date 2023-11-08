@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
+  selectedOption: string = '1'; // Change toolbar-color
 
   constructor(private authService: AuthService) {}
 
@@ -14,4 +15,7 @@ export class MainComponent {
   onLogout() {
     this.authService.logout();
   }
+
+  openLegal() {}
+
 }
