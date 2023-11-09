@@ -1,5 +1,13 @@
-mat-card {
-  width: 300px;
+.centered-container {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.note-card {
+  transform: scale(1.1);
 }
 
 .user-detail-header {
@@ -43,6 +51,12 @@ mat-card {
 
 .btn-container {
   margin: 16px;
+  display: flex;
+  gap: 8px;
+
+  button {
+    color: var(--themeColor)!important;
+  }
 }
 
 .card-box {

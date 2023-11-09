@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogDeleteConfirmComponent } from 'src/app/components/dialog-delete-confirm/dialog-delete-confirm.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatAccordion } from '@angular/material/expansion';
 
 export interface UserData {
   siteName: string;
@@ -21,6 +22,7 @@ export interface UserData {
   styleUrls: ['./passwords.component.scss']
 })
 export class PasswordsComponent implements OnInit, AfterViewInit {
+
   passwordList!: Array<any>;
   passwordId!: string;
   siteName!: string;
@@ -29,9 +31,6 @@ export class PasswordsComponent implements OnInit, AfterViewInit {
   password!: string;
   formState: string = 'Add New';
 
-  isSuccess: boolean = false;
-  successMessage!: string;
-
   public showButtons = false;
 
   displayedColumns: string[] = ['siteName', 'email', 'username', 'password', 'action'];
@@ -39,6 +38,7 @@ export class PasswordsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatAccordion) accordion!: MatAccordion;
 
 
   constructor(
@@ -72,12 +72,6 @@ export class PasswordsComponent implements OnInit, AfterViewInit {
   }
 
 
-  showAlert(message: string) {
-    this.isSuccess = true;
-    this.successMessage = message;
-  }
-
-
   resetForm() {
     this.siteName = '';
     this.email = '';
@@ -95,7 +89,6 @@ export class PasswordsComponent implements OnInit, AfterViewInit {
     if (this.formState == "Add New") {
       this.passwordManagerService.addPassword(values)
       .then(()=> {
-        this.showAlert('Data Saved Successfully');
         this.resetForm();
       })
       .catch(err => {
@@ -106,7 +99,6 @@ export class PasswordsComponent implements OnInit, AfterViewInit {
     else if (this.formState == "Edit") {
       this.passwordManagerService.updatePassword(this.passwordId, values)
         .then(()=> {
-          this.showAlert('Data Edited Successfully');
           this.resetForm();
         })
         .catch(err => {
@@ -138,6 +130,7 @@ export class PasswordsComponent implements OnInit, AfterViewInit {
 
 
   editPassword(passwordId: string, siteName: string, email: string, username: string, password: string) {
+    this.accordion.openAll()
     this.passwordId = passwordId;
     this.siteName = siteName;
     this.email = email;
@@ -163,7 +156,10 @@ export class PasswordsComponent implements OnInit, AfterViewInit {
   }
 
 
-  // Password encryption (https://www.npmjs.com/package/crypto-js)
+  /**
+   * Encrypt password with secret key.
+   * @param password
+   */
   encryptPassword(password: string) {
     const secretKey = pwEnvironment.secretKey;
     const encryptedPassword = AES.encrypt(password, secretKey).toString();

@@ -15,7 +15,7 @@ mat-card {
   animation: gradient 15s ease infinite;
 
   button {
-    margin: 16px;
+    margin: 24px;
   }
 }
 
@@ -35,25 +35,6 @@ mat-card {
   }
 }
 
-.text-box {
-  padding-inline: 16px;
-  padding-bottom: 16px;
-}
-
-input {
-  padding: 10px;
-  margin: 10px;
-}
-
-.alert-danger {
-  color: red;
-  font-size: 12px;
-}
-
-button {
-  width: 120px;
-}
-
 .logo {
   height: 60px;
   padding: 20px;
@@ -61,8 +42,6 @@ button {
 
 .logo:hover {
   animation: shake 0.5s;
-
-  /* When the animation is finished, start again */
   animation-iteration-count: infinite;
 }
 

@@ -1,44 +1,41 @@
 <div class="container">
   <mat-card>
     <img class="logo" src="assets/img/logo.png">
-        <div class="text-box">
-          <mat-card-title>Admin Login</mat-card-title>
-          <mat-card-subtitle>Login to your admin account</mat-card-subtitle>
-        </div>
-        <form #loginForm="ngForm" (ngSubmit)="onSubmitAdmin(loginForm.value)" >
-          <div>
-            <input
-              type="email"
-              class="form-control"
-              placeholder="Email"
-              #Email="ngModel"
-              name="email"
-              ngModel
-              required
-              [ngClass]="{'is-invalid': Email.invalid && Email.touched}"
-            >
-          </div>
-          <div class="alert alert-danger" *ngIf="Email.touched && Email.invalid">
-            Email Cannot be Empty
-          </div>
-          <div>
-            <input
-              type="password"
-              class="form-control"
-              placeholder="Password"
-              #Password="ngModel"
-              name="password"
-              ngModel
-              required
-              [ngClass]="{'is-invalid': Password.invalid && Password.touched}"
-            >
-            <div class="alert alert-danger" *ngIf="Password.touched && Password.invalid">
-              <div *ngIf="Password.errors?.['required']">Password Cannot be Empty</div>
-              <div *ngIf="Password.errors?.['email']">Password must be a valid email address</div>
-            </div>
-          </div>
-          <button mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button>
-        </form>
-        <button class="btn-white" mat-raised-button (click)="openConfirmationDialog()">Guest login</button>
+    <div class="text-box">
+      <mat-card-title>Admin Login</mat-card-title>
+      <mat-card-subtitle>Login to your admin account</mat-card-subtitle>
+    </div>
+    <form #loginForm="ngForm" (ngSubmit)="onSubmitAdmin(loginForm.value)">
+      <mat-form-field class="form-field">
+        <input
+          type="email"
+          matInput
+          placeholder="Email"
+          ngModel
+          name="email"
+          required
+          #Email="ngModel"
+        >
+        <mat-error *ngIf="Email.invalid && Email.touched">
+          Email Cannot be Empty
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input
+          type="password"
+          matInput
+          placeholder="Password"
+          ngModel
+          name="password"
+          required
+          #Password="ngModel"
+        >
+        <mat-error *ngIf="Password.invalid && Password.touched">
+          <div *ngIf="Password.errors?.['required']">Password Cannot be Empty</div>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button>
+    </form>
+    <button class="btn-white" mat-raised-button (click)="openConfirmationDialog()">Guest login</button>
   </mat-card>
 </div>

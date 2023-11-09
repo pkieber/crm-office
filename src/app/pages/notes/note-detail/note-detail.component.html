@@ -1,17 +1,15 @@
-<mat-card class="mt-32">
-  <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="noteMenu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu matTooltip="Edit user" #noteMenu="matMenu">
-    <button mat-menu-item (click)="editNoteDetail()">Edit</button>
-  </mat-menu>
-  <div class="user-details-box">
-    <div class="user-details">
-      <h2>{{ notes.title }}</h2>
-      <div>{{ notes.description }}</div>
+<div class="centered-container">
+  <mat-card class="mt-32 note-card">
+    <div class="user-details-box">
+      <div class="user-details">
+        <h2>{{ notes.title }}</h2>
+        <div>{{ notes.description }}</div>
+      </div>
     </div>
-  </div>
-  <div class="btn-container">
-    <button mat-stroked-button color="primary" [routerLink]="['/notes']"><mat-icon class="mat-18">arrow_back</mat-icon></button>
-  </div>
-</mat-card>
+    <div class="btn-container">
+      <button mat-stroked-button color="primary" [routerLink]="['/notes']" matTooltip="Go back">Go Back</button>
+      <button mat-stroked-button color="primary" (click)="editNoteDetail()" matTooltip="Edit user">Edit Note</button>
+    </div>
+  </mat-card>
+</div>
+
