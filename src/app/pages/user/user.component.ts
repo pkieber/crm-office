@@ -78,7 +78,7 @@ export class UserComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'confirm') {
-        this.userService.deletUser(userId);
+        this.userService.deleteUser(userId);
       }
     });
   }

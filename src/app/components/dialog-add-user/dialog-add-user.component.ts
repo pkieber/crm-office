@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { User } from 'src/models/user.class';
-import { Firestore, collection, doc, addDoc, updateDoc} from '@angular/fire/firestore';
+import { Firestore, collection, doc, addDoc, updateDoc } from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,7 +18,8 @@ export class DialogAddUserComponent {
 
   constructor(
     private firestore: Firestore,
-    public dialogRef: MatDialogRef<DialogAddUserComponent>
+    public dialogRef: MatDialogRef<DialogAddUserComponent>,
+    private snackBar: MatSnackBar
   ) {}
 
 
@@ -25,19 +27,41 @@ export class DialogAddUserComponent {
    * Saves the user to the database.
    */
   async saveUser() {
-    this.user.birthDate = this.birthDate.getTime();
-    console.log('Current user is: ', this.user);
-    this.loading = true;
-    const userCollection = collection(this.firestore, 'users');
-    let result = await addDoc(userCollection, this.user.toJSON());
+    try {
+      this.user.birthDate = this.birthDate.getTime();
+      console.log('Current user is: ', this.user);
+      this.loading = true;
+      const userCollection = collection(this.firestore, 'users');
+      let result = await addDoc(userCollection, this.user.toJSON());
 
-    // Add ID to user.name
-    const docRef = doc(userCollection, result['id']);
-    this.user.id = result['id'];
-    updateDoc(docRef, this.user.toJSON());
+      // Add ID to user.name
+      const docRef = doc(userCollection, result['id']);
+      this.user.id = result['id'];
+      await updateDoc(docRef, this.user.toJSON());
 
-    // Stop loader and close dialog
-    this.loading = false;
-    this.dialogRef.close();
+      // Show success snackbar
+      this.showSnackbar('User added successfully', 'success-snackbar');
+    } catch (error) {
+      console.error(error);
+      // Show error snackbar
+      this.showSnackbar('Failed to add user', 'error-snackbar');
+    } finally {
+      // Stop loader and close dialog
+      this.loading = false;
+      this.dialogRef.close();
+    }
+  }
+
+
+  /**
+   * Shows a snackbar with the given message and CSS class.
+   * @param message The message to display in the snackbar.
+   * @param panelClass The CSS class for styling the snackbar.
+   */
+  showSnackbar(message: string, panelClass: string = 'default-snackbar'): void {
+    this.snackBar.open(message, 'OK', {
+      duration: 3000,
+      panelClass: [panelClass]
+    });
   }
 }

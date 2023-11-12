@@ -18,7 +18,7 @@
     {{ user.zipCode }} {{ user.city }}
   </mat-card-content>
   <div class="btn-container">
-    <button mat-stroked-button color="primary" [routerLink]="['/user']"><mat-icon class="mat-18">arrow_back</mat-icon></button>
-    <button mat-stroked-button color="primary" (click)="editUserDetail()"><mat-icon class="mat-18">edit</mat-icon></button>
+    <button mat-stroked-button color="primary" [routerLink]="['/user']">Go Back</button>
+    <button mat-stroked-button color="primary" (click)="editUserDetail()">Edit User</button>
   </div>
 </mat-card>

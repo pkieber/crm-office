@@ -44,15 +44,15 @@ mat-toolbar, mat-toolbar-row {
 }
 
 .logo-container {
-  height: 56px;
+  height: 140px;
   display: flex;
   align-items: center;
 }
 
 .logo {
   max-width: 100%;
-  height: 40px;
-  padding-inline: 16px;
+  height: 100px;
+  padding-inline: 24px;
   cursor: pointer;
 
   @media (max-width: 750px) {
@@ -61,7 +61,6 @@ mat-toolbar, mat-toolbar-row {
     margin-right: 16px;
   }
 }
-
 
 /* Sidenav-Menu */
 .setting {
@@ -76,7 +75,8 @@ mat-toolbar, mat-toolbar-row {
   margin: 0;
 
   li {
-    padding-inline: 16px;
+    margin-bottom: 12px;
+    padding-inline: 24px;
     height: 48px;
     display: flex;
     align-items: center;
@@ -142,4 +142,11 @@ mat-toolbar, mat-toolbar-row {
     rgba(23,4,91,1) 100%
   );
   color: white;
+}
+
+.gradient-title {
+  font-size: 24px;
+  background: -webkit-linear-gradient(#689ccc, rgb(178, 130, 254));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

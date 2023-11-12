@@ -5,9 +5,10 @@ import { pwEnvironment } from 'src/environments/environment.pw';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DialogDeleteConfirmComponent } from 'src/app/components/dialog-delete-confirm/dialog-delete-confirm.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DialogDeleteConfirmComponent } from 'src/app/components/dialog-delete-confirm/dialog-delete-confirm.component';
 
 export interface UserData {
   siteName: string;
@@ -44,6 +45,7 @@ export class PasswordsComponent implements OnInit, AfterViewInit {
   constructor(
     private passwordManagerService: PasswordManagerService,
     public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
 
@@ -88,24 +90,37 @@ export class PasswordsComponent implements OnInit, AfterViewInit {
 
     if (this.formState == "Add New") {
       this.passwordManagerService.addPassword(values)
-      .then(()=> {
-        this.resetForm();
-      })
-      .catch(err => {
-        console.log(err);
-      })
-    }
-
-    else if (this.formState == "Edit") {
-      this.passwordManagerService.updatePassword(this.passwordId, values)
-        .then(()=> {
+        .then(() => {
+          this.showSnackbar('Password Added Successfully');
+          // Reload passwords after adding a new one
+          this.loadPasswordsFromFirestore();
           this.resetForm();
         })
         .catch(err => {
           console.log(err);
+          this.showSnackbar('Failed to add password', 'error-snackbar');
+        });
+    } else if (this.formState == "Edit") {
+      this.passwordManagerService.updatePassword(this.passwordId, values)
+        .then(() => {
+          this.showSnackbar('Password Updated Successfully');
+          this.loadPasswordsFromFirestore();
+          this.resetForm();
         })
-      }
+        .catch(err => {
+          console.log(err);
+          this.showSnackbar('Failed to update password', 'error-snackbar');
+        });
     }
+  }
+
+
+  showSnackbar(message: string, panelClass: string = 'success-snackbar'): void {
+    this.snackBar.open(message, 'OK', {
+      duration: 3000,
+      panelClass: [panelClass]
+    });
+  }
 
 
   loadPasswordsFromFirestore() {

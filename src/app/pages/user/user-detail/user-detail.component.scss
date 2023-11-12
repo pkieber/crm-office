@@ -40,7 +40,9 @@
 .btn-container {
   margin: 16px;
   display: flex;
-  gap: 10px;
+  gap: 8px;
+
+  button {
+    color: var(--themeColor)!important;
+  }
 }
-
-

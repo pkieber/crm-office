@@ -36,6 +36,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 // Firebase
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -112,6 +114,7 @@ import { DialogConfirmationComponent } from './components/dialog-confirmation/di
     MatTableModule,
     MatRadioModule,
     MatExpansionModule,
+    MatSnackBarModule,
     NgChartsModule,
     HttpClientModule,
     // Firebase

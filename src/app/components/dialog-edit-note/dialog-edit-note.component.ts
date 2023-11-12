@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Notes } from 'src/models/notes.class';
-import { Firestore, collection, doc, updateDoc} from '@angular/fire/firestore';
+import { Firestore, collection, doc, updateDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-dialog-edit-note',
@@ -15,7 +16,8 @@ export class DialogEditNoteComponent {
 
   constructor(
     private firestore: Firestore,
-    public dialogRef: MatDialogRef<DialogEditNoteComponent>
+    public dialogRef: MatDialogRef<DialogEditNoteComponent>,
+    private snackBar: MatSnackBar
   ) {}
 
 
@@ -31,7 +33,27 @@ export class DialogEditNoteComponent {
         // Stop loader and close dialog
         this.loading = false;
         this.dialogRef.close();
-      }
-    );
+        // Show success snackbar
+        this.showSnackbar('Note updated successfully', 'success-snackbar');
+      })
+      .catch((error) => {
+        console.error(error);
+        // Show error snackbar
+        this.showSnackbar('Failed to update note', 'error-snackbar');
+        this.loading = false;
+      });
+  }
+
+
+  /**
+   * Shows a snackbar with the given message and CSS class.
+   * @param message The message to display in the snackbar.
+   * @param panelClass The CSS class for styling the snackbar.
+   */
+  showSnackbar(message: string, panelClass: string = 'default-snackbar'): void {
+    this.snackBar.open(message, 'OK', {
+      duration: 3000,
+      panelClass: [panelClass]
+    });
   }
 }

@@ -6,18 +6,21 @@ import {
   doc, updateDoc,
   deleteDoc,
 } from '@angular/fire/firestore';
-import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotesService {
 
-  constructor(private firestore: Firestore, private toastr: ToastrService) {}
+  constructor(
+    private firestore: Firestore,
+    private snackBar: MatSnackBar
+  ) {}
 
-  addNotes (data: object) {
+
+  addNotes(data: object) {
     const dbInstance = collection(this.firestore, 'notes');
-    this.toastr.success('Data Added Successfully');
     return addDoc(dbInstance, data);
   }
 
@@ -30,15 +33,22 @@ export class NotesService {
 
   updateNotes(id: string, data: object): Promise<void> {
     const docInstance = doc(this.firestore, 'notes', id);
-    this.toastr.success('Data Updated Successfully');
     return updateDoc(docInstance, data);
   }
 
 
   deleteNotes(id: string) {
     const docInstance = doc(this.firestore, 'notes', id);
-    this.toastr.success('Data Deleted Successfully');
-    return deleteDoc(docInstance);
+    return deleteDoc(docInstance).then(() => {
+      this.showSuccess('Note Deleted Successfully');
+    });
   }
 
+
+  private showSuccess(message: string): void {
+    this.snackBar.open(message, 'OK', {
+      duration: 3000,
+      panelClass: ['success-snackbar']
+    });
+  }
 }
