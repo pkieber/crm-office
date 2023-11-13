@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { Notes } from 'src/models/notes.class';
+import { NoteModel } from 'src/models/notes.class';
 import { Firestore, collection, doc, addDoc, updateDoc } from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog-add-note',
@@ -11,33 +12,48 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dialog-add-note.component.scss']
 })
 export class DialogAddNoteComponent {
-  notes = new Notes();
+  note: NoteModel = { id: '', title: '', content: '', type: '' };
   loading: boolean = false;
   notes$!: Observable<any>;
+  formGroup: FormGroup;
 
   constructor(
     private firestore: Firestore,
     public dialogRef: MatDialogRef<DialogAddNoteComponent>,
     private snackBar: MatSnackBar
-  ) {}
+  ) {
+    this.formGroup = new FormGroup({
+      title: new FormControl('', [Validators.required]),
+      content: new FormControl('', [Validators.required]),
+    });
+  }
 
 
   /**
-   * Saves the user to the database.
+   * Saves the notes to the database.
    */
   async saveNote() {
     try {
-      this.loading = true;
-      const notesCollection = collection(this.firestore, 'notes');
-      let result = await addDoc(notesCollection, this.notes.toJSON());
+      if (this.formGroup.valid) {
+        this.loading = true;
+        const notesCollection = collection(this.firestore, 'notes');
 
-      // Add ID to user.name
-      const docRef = doc(notesCollection, result['id']);
-      this.notes.id = result['id'];
-      await updateDoc(docRef, this.notes.toJSON());
+        // Use form values instead of direct assignment
+        this.note = { ...this.formGroup.value, id: '' };
 
-      // Show success snackbar
-      this.showSnackbar('Note added successfully', 'success-snackbar');
+        let result = await addDoc(notesCollection, this.note);
+
+        // Add ID to note > this lines of code dynamically add a unique ID (see note-interface).
+        const docRef = doc(notesCollection, result.id);
+        this.note.id = result.id;
+        await updateDoc(docRef, this.note);
+
+        // Show success snackbar
+        this.showSnackbar('Note added successfully', 'success-snackbar');
+      } else {
+        // Form is invalid, show error snackbar
+        this.showSnackbar('Please fill in all required fields', 'error-snackbar');
+      }
     } catch (error) {
       console.error(error);
       // Show error snackbar

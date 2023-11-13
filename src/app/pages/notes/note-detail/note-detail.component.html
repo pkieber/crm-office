@@ -1,15 +1,29 @@
-<div class="centered-container">
-  <mat-card class="mt-32 note-card">
-    <div class="user-details-box">
-      <div class="user-details">
-        <h2>{{ notes.title }}</h2>
-        <div>{{ notes.description }}</div>
-      </div>
-    </div>
-    <div class="btn-container">
-      <button mat-stroked-button color="primary" [routerLink]="['/notes']" matTooltip="Go back">Go Back</button>
-      <button mat-stroked-button color="primary" (click)="editNoteDetail()" matTooltip="Edit user">Edit Note</button>
-    </div>
-  </mat-card>
-</div>
+<mat-card
+  class="note"
+  (mouseenter)="showButtons = true"
+  (mouseleave)="showButtons = false"
+>
+  <div>
+    <mat-card-header>
+      <input *ngIf="editInfo" [(ngModel)]="editedNote.title" type="text">
+      <mat-card-title *ngIf="!editInfo">
+          {{note.title}}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <textarea *ngIf="editInfo" [(ngModel)]="editedNote.content"></textarea>
+      <p *ngIf="!editInfo">
+          {{note.content}}
+      </p>
+    </mat-card-content>
+  </div>
 
+  <mat-card-actions *ngIf="showButtons" class="btn-container">
+    <div class="btn-container">
+      <button mat-stroked-button *ngIf="!editInfo" class="white_btn_round" (click)="openEditInfo()">Edit</button>
+      <button mat-stroked-button *ngIf="editInfo" (click)="saveEditInfo()" class="btn fullBtn">Save</button>
+      <button mat-stroked-button *ngIf="!editInfo" class="white_btn_round" (click)="onDelete()">Delete</button>
+    </div>
+  </mat-card-actions>
+
+</mat-card>

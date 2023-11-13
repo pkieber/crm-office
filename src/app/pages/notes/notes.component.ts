@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { NoteModel } from 'src/models/notes.class';
 import { NotesService } from 'src/app/services/notes.service';
-import { Notes } from 'src/models/notes.class';
 import { DialogAddNoteComponent } from 'src/app/components/dialog-add-note/dialog-add-note.component';
-import { DialogDeleteConfirmComponent } from 'src/app/components/dialog-delete-confirm/dialog-delete-confirm.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-notes',
@@ -12,18 +11,14 @@ import { DialogDeleteConfirmComponent } from 'src/app/components/dialog-delete-c
   styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent implements OnInit {
-  id!: string;
-  note$!: Observable<any>;
-  allNotes: Notes[] = [];
-
+  noteList: NoteModel[] = [];
+  filteredNotes: NoteModel[] = [];
   searchText: string = '';
-  public showButtons = false;
-
 
   constructor(
+    private noteService: NotesService,
     public dialog: MatDialog,
-    private notesService: NotesService,
-  ) { }
+  ) {}
 
 
   ngOnInit(): void {
@@ -32,39 +27,41 @@ export class NotesComponent implements OnInit {
 
 
   loadNotes() {
-    this.notesService.loadNotes().subscribe((data: any) => {
-      this.allNotes = data;
+    this.noteService.loadNotes().subscribe((data: any) => {
+      this.noteList = data;
+      this.filteredNotes = this.noteList; // Move this line here
     });
   }
 
 
-  /**
-   * Delete note after confirmation.
-   * @param noteId
-   */
-  onDeleteNote(noteId: string): void {
-    const dialogRef = this.dialog.open(DialogDeleteConfirmComponent);
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogAddNoteComponent, {
+      width: '400px', // Set the width according to your design
+    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'confirm') {
-        this.notesService.deleteNotes(noteId);
+    dialogRef.afterClosed().subscribe(newNote => {
+      // Handle the newNote returned from the dialog, if needed
+      if (newNote) {
+        this.noteList.push(newNote);
       }
     });
   }
 
-
-  /**
-   * Opens the dialog for adding a new user.
-   */
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogAddNoteComponent);
-  }
-
-
-  /**
+    /**
    * This search method will be called when custom event (user typing) from child-component (searchComponent) is raised.
    */
     onSearchTextEntered(searchValue: string) {
-      this.searchText = searchValue;
+      this.searchText = searchValue.toLowerCase();
+      this.filterNotes();
     }
+
+    private filterNotes() {
+      this.filteredNotes = this.noteList.filter(
+        (note) =>
+          this.searchText === '' ||
+          note.title.toLowerCase().includes(this.searchText) ||
+          note.content.toLowerCase().includes(this.searchText)
+      );
+    }
+
 }

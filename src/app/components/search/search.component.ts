@@ -11,17 +11,17 @@ export class SearchComponent {
 
 
   /** Input event happens as soon as user types into the textbox.
-  * Value from "enteredSearchValue" will be emitted.
-  * See parent-component "app-user".
-  */
+   * Value from "enteredSearchValue" will be emitted.
+   * See parent-component "app-user".
+   */
   onSearchTextChanged(){
     this.searchTextChanged.emit(this.enteredSearchValue);
   }
 
 
   /**
-  * Clears search value and reloads the user list.
-  */
+   * Clears search value and reloads the user list.
+   */
   clearSearch() {
     this.enteredSearchValue = '';
     this.searchTextChanged.emit('');

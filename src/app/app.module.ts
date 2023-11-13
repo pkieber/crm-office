@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -28,6 +27,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -56,7 +57,6 @@ import { MainComponent } from './pages/main/main.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { DialogAddNoteComponent } from './components/dialog-add-note/dialog-add-note.component';
-import { DialogEditNoteComponent } from './components/dialog-edit-note/dialog-edit-note.component';
 import { NoteDetailComponent } from './pages/notes/note-detail/note-detail.component';
 import { PasswordsComponent } from './pages/passwords/passwords.component';
 import { OverviewComponent } from './pages/overview/overview.component';
@@ -82,7 +82,6 @@ import { DialogConfirmationComponent } from './components/dialog-confirmation/di
     RegisterComponent,
     NotesComponent,
     DialogAddNoteComponent,
-    DialogEditNoteComponent,
     NoteDetailComponent,
     PasswordsComponent,
     OverviewComponent,
@@ -105,7 +104,6 @@ import { DialogConfirmationComponent } from './components/dialog-confirmation/di
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FormsModule,
     MatProgressBarModule,
     MatCardModule,
     MatMenuModule,
@@ -117,14 +115,14 @@ import { DialogConfirmationComponent } from './components/dialog-confirmation/di
     MatSnackBarModule,
     NgChartsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     // Firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
-    // Alerts
-    ToastrModule.forRoot(),
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

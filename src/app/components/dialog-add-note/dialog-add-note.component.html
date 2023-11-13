@@ -3,24 +3,40 @@
   <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
   <h1 mat-dialog-title>Add Note</h1>
   <!-- Input/Selection fields. -->
-  <div mat-dialog-content>
-    <div>
-      <mat-form-field class="mr-16" appearance="outline">
-        <mat-label>Title</mat-label>
-        <input type="text" [disabled]="loading" [(ngModel)]="notes.title" matInput placeholder="Title">
-        <mat-icon matSuffix>note</mat-icon>
-      </mat-form-field>
+  <form [formGroup]="formGroup">
+    <div mat-dialog-content>
+      <div>
+        <mat-form-field class="mr-16" appearance="outline">
+          <mat-label>Title</mat-label>
+          <input
+            type="text"
+            [disabled]="loading"
+            formControlName="title"
+            matInput
+            placeholder="Title"
+            class="form-control"
+          />
+          <mat-icon matSuffix>note</mat-icon>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="mr-16" appearance="outline">
+          <mat-label>Content</mat-label>
+          <textarea
+            [disabled]="loading"
+            formControlName="content"
+            matInput
+            placeholder="Content"
+            rows="5"
+          ></textarea>
+          <mat-icon matSuffix>description</mat-icon>
+        </mat-form-field>
+      </div>
     </div>
-    <div>
-      <mat-form-field class="mr-16" appearance="outline">
-        <mat-label>Description</mat-label>
-        <textarea [disabled]="loading" [(ngModel)]="notes.description" matInput placeholder="Description" rows="3"></textarea>
-        <mat-icon matSuffix></mat-icon>
-      </mat-form-field>
-    </div>
-  </div>
-  <div mat-dialog-actions>
+    <div mat-dialog-actions>
       <button [disabled]="loading" mat-button (click)="dialogRef.close()">Cancel</button>
       <button [disabled]="loading" mat-button (click)="saveNote()" cdkFocusInitial>Save</button>
-  </div>
+    </div>
+  </form>
 </div>
+

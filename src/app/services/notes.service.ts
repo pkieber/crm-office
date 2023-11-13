@@ -33,14 +33,20 @@ export class NotesService {
 
   updateNotes(id: string, data: object): Promise<void> {
     const docInstance = doc(this.firestore, 'notes', id);
-    return updateDoc(docInstance, data);
+    return updateDoc(docInstance, data)
+      .then(() => {
+        this.showSuccess('Note updated successfully');
+      })
+      .catch(error => {
+        console.error('Error updating note:', error);
+      });
   }
 
 
   deleteNotes(id: string) {
     const docInstance = doc(this.firestore, 'notes', id);
     return deleteDoc(docInstance).then(() => {
-      this.showSuccess('Note Deleted Successfully');
+      this.showSuccess('Note deleted successfully');
     });
   }
 

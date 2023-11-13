@@ -1,6 +1,6 @@
 <mat-form-field class="search-container">
   <mat-label>Search</mat-label>
   <input matInput type="text" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()">
-  <mat-icon class="search-icon" *ngIf="!enteredSearchValue" matTooltip="Search">search</mat-icon>
-  <mat-icon class="close-icon" *ngIf="enteredSearchValue" (click)="clearSearch()" matTooltip="Clear">close</mat-icon>
+  <mat-icon class="search-icon" *ngIf="!enteredSearchValue">search</mat-icon>
+  <mat-icon class="close-icon" *ngIf="enteredSearchValue" (click)="clearSearch()">close</mat-icon>
 </mat-form-field>

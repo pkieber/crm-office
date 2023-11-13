@@ -3,3 +3,8 @@
     width: 100%;
   }
 }
+
+::ng-deep .cdk-overlay-pane {
+  width: unset !important;
+  max-width: unset !important;
+}

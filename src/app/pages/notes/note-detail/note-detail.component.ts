@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { NoteModel } from 'src/models/notes.class';
+import { NotesService } from 'src/app/services/notes.service';
+import { DialogDeleteConfirmComponent } from 'src/app/components/dialog-delete-confirm/dialog-delete-confirm.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Notes } from 'src/models/notes.class';
-import { Firestore, collection, doc, docData } from '@angular/fire/firestore';
-import { DialogEditNoteComponent } from 'src/app/components/dialog-edit-note/dialog-edit-note.component';
+
 
 @Component({
   selector: 'app-note-detail',
@@ -11,33 +11,49 @@ import { DialogEditNoteComponent } from 'src/app/components/dialog-edit-note/dia
   styleUrls: ['./note-detail.component.scss']
 })
 export class NoteDetailComponent {
+  @Input() note!: NoteModel;
+  editInfo: boolean = false;
+  editedNote: NoteModel = { id: '0', title: '', content: '', type: '' };
+  public showButtons = false;
 
-  id: string = '';
-  notes: Notes = new Notes();
+  constructor(
+    private noteService: NotesService,
+    public dialog: MatDialog,
+  ) {}
 
 
-  constructor(private firestore: Firestore, private route: ActivatedRoute, private dialog: MatDialog) {
-    this.route.paramMap.subscribe( paramMap => {
-      this.id = paramMap.get('id') ?? '';
-      this.loadNotes();
-    });
+  openEditInfo() {
+    // Copy the values from the original note to the editedNote
+    this.editedNote = { ...this.note };
+    this.editInfo = true;
   }
 
 
-  loadNotes() {
-    const notesCollection = collection(this.firestore, 'notes');
-    const docRef = doc(notesCollection, this.id);
-
-    docData(docRef).subscribe((notesCollection: any) => {
-      this.notes = new Notes(notesCollection);
-    });
+  saveEditInfo() {
+    // Update the note in Firestore using the NoteService
+    this.noteService.updateNotes(this.note.id, this.editedNote)
+      .then(() => {
+        this.editInfo = false;
+      })
+      .catch(error => {
+        console.error('Error updating note:', error);
+        // Handle error as needed (e.g., show an error message)
+      });
   }
 
 
-  editNoteDetail() {
-    const dialog = this.dialog.open(DialogEditNoteComponent);
-    dialog.componentInstance.notes = new Notes (this.notes.toJSON());
-    dialog.componentInstance.id = this.id;
+  /**
+   * Delete user after confirmation.
+   * @param userId
+   */
+  onDelete(): void {
+    const dialogRef = this.dialog.open(DialogDeleteConfirmComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.noteService.deleteNotes(this.note.id);
+      }
+    });
   }
 
 }
